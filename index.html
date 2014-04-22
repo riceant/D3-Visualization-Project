@@ -7,5 +7,22 @@
 <body>
 <h1>Add Content Below </h1>
 <p> Test </p>
+
+	<div id="canvas"></div>
+	<script type="text/javascript">
+
+		//dimensions of canvas
+		var height = 1000;
+		var width = 2000;
+
+		//creating svg element
+		var svg = d3.select("#canvas")
+			.append("svg")
+			.attr("width", width)
+			.attr("height", height)
+			.attr("viewBox", "0 0 " + width + " " + height)
+			.attr("preserveAspectRatio", "none");
+			
+	</script>
 </body>
 </html>
