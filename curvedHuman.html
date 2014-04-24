@@ -1,0 +1,445 @@
+<html>
+<head>
+	<title>CS3300 Project 3 </title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<title>CS3300 Project 3 </title>
+	<style type="text/css">
+		.canvas {
+			background-color: #b7b7b7;
+		}
+		.body {
+			fill: white;
+			stroke: black;
+			stroke-width: 1;
+		}
+	</style>
+<head>
+
+<body>
+<h1>Add Content Below </h1>
+<p> Test </p>
+
+	<input id="slider" type="range" min="800" max="1200" value="1000"/>
+	
+	<div id="divCanvas"></div>
+
+	<script type="text/javascript">
+
+		//dimensions of canvas
+		var heightSVG = 1000;
+		var width = 400;
+
+		//creating svg element
+		var svg = d3.select("#divCanvas")
+			.append("svg")
+			.attr("class", "canvas")
+			.attr("id", "canvas")
+			.attr("width", width)
+			.attr("height", heightSVG)
+			.attr("viewBox", "0 0 " + width + " " + heightSVG)
+			.attr("preserveAspectRatio", "none");
+
+		//body dimension variables
+		// var name = {
+		// 	"density": 0;
+		// 	"percent": 1;
+		// };
+		var density = 1.05;
+		var age = 30;
+		var weight = 160;
+		var height = 70;
+		var neck = 38;
+		var chest = 95;
+		var abs = 90;
+		var hip = 98
+		var thigh = 58;
+		var knee = 38;
+		var ankle = 23;
+		var bicep = 32;
+		var forearm = 28;
+		var wrist = 18;
+		//additional
+		var armWidth = 0.5;
+
+		//body height diensions based
+		///////////////////////////////////////////////////////////////////////
+		// average drawn figure-->height is equivalent to 7.5 heads
+		var average = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 1],
+			"abs": [5.75, 1],
+			"hip": [4.75, 1],
+			"thigh": [4, 1.95],
+			"calf": [1.95, 1.65],
+			"feet": [0.3, 0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		// ideal drawn figure-->height is equivalent to 8 heads
+		var ideal = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 6.15],
+			"arm": [6.3],
+			"abs": [5.25],
+			"hip": [4.1],
+			"thigh": [3],
+			"feet": [0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		// heroic drawn figure-->height is equivalent to 8.5 heads
+		var heroic = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 1],
+			"abs": [5.75, 1],
+			"hip": [4.75, 1],
+			"thigh": [4, 1.95],
+			"calf": [1.95, 1.65],
+			"feet": [0.3, 0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		var prop = ideal;
+
+
+		//conversion and scale functions
+		///////////////////////////////////////////////////////////////////////
+		//conversion functions
+		//function converting circumference to diameter
+		var dia = function(measurement) {
+			return measurement/3.14; 
+		}
+		//function converting inches to centimeters
+		var cm = function(measurement) {
+			return measurement*2.54;
+		}
+		//scales: 180 cm is scaled to roughly 800 pixels
+		//padding for yScale
+		var heightPadding = 50;
+		//yScale
+		var heightScale = d3.scale.linear()
+			.domain([0,214])
+			.range([heightSVG-heightPadding,0]);
+		//general scale
+		var scale = d3.scale.linear()
+			.domain([0,214])
+			.range([0,heightSVG-heightPadding]);
+
+
+		//useful canvas dimensions and body portion lengths
+		var center = width/2;
+		var bottom = heightPadding;
+		var division = cm(height)/8;
+
+
+		//placement functions
+		///////////////////////////////////////////////////////////////////////
+		//function calculating left position of centered aligned rect
+		var placeCenterL = function(circumference) {
+			return center - scale(dia(circumference)*.5);
+		}
+		//function calculating right position of centered aligned rect
+		var placeCenterR = function(outside) {
+			return center + scale(dia(outside)*.5);
+		}
+		//function calculating left position of rect alighed left of center
+		var placeLeft = function(circumference) {
+			return center - scale(dia(circumference));
+		}
+		//function calculating right position of rect aligned right of center
+		var placeRight = function(circumference) {
+			return center + scale(dia(circumference));
+		}
+		//function calculaing pixel diameter 
+		var pixelWidth = function(circumference) {
+			return scale(dia(circumference));
+		}
+
+		//draw Bezier Curve
+		//widths are circumference
+		//heights are factors of division units
+		var BezierCirL = function(width1, height1, width2, height2) {
+			var xy2 = " " + placeCenterL(width1) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy1 = " " + placeCenterL(width2) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy = " " + placeCenterL(width2) + " " + heightScale(division*(height2));
+			return "C" + xy2 + xy1 + xy;
+		};
+		var BezierCirR = function(width1, height1, width2, height2) {
+			var xy2 = " " + placeCenterR(width1) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy1 = " " + placeCenterR(width2) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy = " " + placeCenterR(width2) + " " + heightScale(division*(height2));
+			return "C" + xy2 + xy1 + xy;
+		};
+		var BezierCirLL = function(width1, height1, width2, height2) {
+			var xy2 = " " + placeLeft(width1) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy1 = " " + placeLeft(width2) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy = " " + placeLeft(width2) + " " + heightScale(division*(height2));
+			return "C" + xy2 + xy1 + xy;
+		};
+		var BezierCirRR = function(width1, height1, width2, height2) {
+			var xy2 = " " + placeRight(width1) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy1 = " " + placeRight(width2) + " " + heightScale(division*(height1+height2)*0.5);
+			var xy = " " + placeRight(width2) + " " + heightScale(division*(height2));
+			return "C" + xy2 + xy1 + xy;
+		};
+		//drawing human figure with SVG path
+		///////////////////////////////////////////////////////////////////////
+		//appending neck
+		svg.append("path")
+			.attr("class", "body")
+			.attr("id", "neck")
+			.attr("d", 
+				"M " + placeCenterL(neck) + " " + heightScale(division*prop.neck[0]) + " " +
+				"V " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " +
+				"Q " + center + " " + heightScale(division*(prop.neck[0]-prop.neck[1]-0.3)) + " " + 
+					placeCenterR(neck) + " " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " + 
+				"V " + heightScale(division*(prop.neck[0])) + " " +
+				"Z"
+				)
+			.style("fill", "#FFCC66");
+		//appending upper body
+		svg.append("path")
+			.attr("class", "body")
+			.attr("id", "upper")
+			.attr("d", 
+				"M " + placeCenterR(neck) + " " + heightScale(division*prop.chest[0]) + " " +
+				"Q " + center + " " + heightScale(division*(prop.chest[0]-0.3)) + " " +
+					placeCenterL(neck) + " " + heightScale(division*(prop.chest[0])) + " " + 
+				"Q " + placeCenterL(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
+					placeCenterL((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+				"L " + placeCenterL((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+					(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+				"L " + placeCenterL(chest) + " " + heightScale(division*prop.chest[1]) + " " +
+				BezierCirL(chest, prop.chest[1], abs, prop.abs[0]) + " " +
+				BezierCirL(abs, prop.abs[0], hip, prop.hip[0]) + " " +
+				"H " + placeCenterR(hip) + " " +
+				BezierCirR(hip, prop.hip[0], abs, prop.abs[0]) + " " +
+				BezierCirR(abs, prop.abs[0], chest, prop.chest[1]) + " " +
+				"L " + placeCenterR((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+					(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+				"L " + placeCenterR((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+				"Q " + placeCenterR(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
+					placeCenterR(neck) + " " + heightScale(division*(prop.chest[0])) + " " +
+				"Z"
+			)
+			.style("fill", "red");
+ 		//apendding lower body
+ 		svg.append("path")
+ 			.attr("class", "body")
+ 			.attr("id", "lower")
+ 			.attr("d",
+ 				"M " + placeCenterL(hip) + " " +heightScale(division*prop.hip[0]) + " " +
+ 				BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
+ 				BezierCirLL(thigh, prop.thigh[0], (0.5*(thigh-knee)+knee), prop.knee[0]) + " " + 
+ 				"L " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+ 				"H " + placeLeft(0.5*thigh-0.5*ankle) + " " +
+ 				BezierCirLL(0.5*thigh-0.5*ankle, prop.feet[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " + 
+ 				BezierCirLL(0.5*thigh-0.5*knee, prop.knee[0], 0, prop.thigh[0]) + " " +
+ 				BezierCirRR(0, prop.thigh[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " +
+ 				BezierCirRR(0.5*thigh-0.5*knee, prop.knee[0], 0.5*thigh-0.5*ankle, prop.feet[0]) + " " +
+ 				"H " + placeRight(0.5*thigh+0.5*ankle) + " " +
+ 				"L " + placeRight(0.5*thigh+0.5*knee) + " " + heightScale(division*prop.knee[0]) + " " +
+ 				BezierCirRR((0.5*(thigh-knee)+knee), prop.knee[0], thigh, prop.thigh[0]) + " " +
+ 				BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
+ 				"Z"
+ 			)
+ 			.style("fill", "blue");
+ 		//apendding left arm
+
+		// //drawing human figure with shapes
+		// ///////////////////////////////////////////////////////////////////////
+		// //neck
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "neck")
+		// 	.attr("x", placeCenter(neck))
+		// 	.attr("y", heightScale(division*prop.neck[0]))
+		// 	.attr("width", pixelWidth(neck))
+		// 	.attr("height", scale(division*prop.neck[1]));
+		// //head
+		// svg.append("ellipse")
+		// 	.attr("class", "body")
+		// 	.attr("id", "head")
+		// 	.attr("cx", center)
+		// 	.attr("cy", heightScale(division*prop.head[0]))
+		// 	.attr("rx", scale(division*(.7)*.5))
+		// 	.attr("ry", scale(division*prop.head[1]));
+		// //chest
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "chest")
+		// 	.attr("x", placeCenter(chest))
+		// 	.attr("y", heightScale(division*prop.chest[0]))
+		// 	.attr("width", pixelWidth(chest))
+		// 	.attr("height", scale(division*prop.chest[1]));
+		// //abdomen
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "chest")
+		// 	.attr("x", placeCenter(abs))
+		// 	.attr("y", heightScale(division*prop.abs[0]))
+		// 	.attr("width", pixelWidth(abs))
+		// 	.attr("height", scale(division*prop.abs[1]));
+		// //hip
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "hip")
+		// 	.attr("x", placeCenter(hip))
+		// 	.attr("y", heightScale(division*prop.hip[0]))
+		// 	.attr("width", pixelWidth(hip))
+		// 	.attr("height", scale(division*prop.hip[1]));
+		// //bicep left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "bicep")
+		// 	.attr("x", placeCenter(chest+2*bicep))
+		// 	.attr("y", heightScale(division*prop.bicep[0]))
+		// 	.attr("width", pixelWidth(bicep))
+		// 	.attr("height", scale(division*prop.bicep[1]))
+		// 	.attr("transform", "rotate(15 " + heightScale(division*(prop.bicep[0]+0.5*prop.bicep[0])) + " " + pixelWidth(bicep) + ")");
+		// //bicep right
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "bicep")
+		// 	.attr("x", placeCenterR(chest))
+		// 	.attr("y", heightScale(division*prop.bicep[0]))
+		// 	.attr("width", pixelWidth(bicep))
+		// 	.attr("height", scale(division*prop.bicep[1]));
+		// //forearm left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "forearm")
+		// 	.attr("x", placeCenter(chest+bicep+forearm))
+		// 	.attr("y", heightScale(division*prop.forearm[0]))
+		// 	.attr("width", pixelWidth(forearm))
+		// 	.attr("height", scale(division*prop.forearm[1]));
+		// //forearm right
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "forearm")
+		// 	.attr("x", placeRight(chest*.5 + .5*(bicep-forearm)))
+		// 	.attr("y", heightScale(division*prop.forearm[0]))
+		// 	.attr("width", pixelWidth(forearm))
+		// 	.attr("height", scale(division*prop.forearm[1]));
+		// //thigh left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "thigh")
+		// 	.attr("x", placeLeft(thigh))
+		// 	.attr("y", heightScale(division*prop.thigh[0]))
+		// 	.attr("width", pixelWidth(thigh))
+		// 	.attr("height", scale(division*prop.thigh[1]));
+		// //thigh right
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "thigh")
+		// 	.attr("x", center)
+		// 	.attr("y", heightScale(division*prop.thigh[0]))
+		// 	.attr("width", pixelWidth(thigh))
+		// 	.attr("height", scale(division*prop.thigh[1]));
+		// //wrist left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "wrist")
+		// 	.attr("x", placeCenter(chest+bicep+wrist))
+		// 	.attr("y", heightScale(division*prop.wrist[0]))
+		// 	.attr("width", pixelWidth(wrist))
+		// 	.attr("height", scale(division*prop.wrist[1]));
+		// //wrist left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "wrist")
+		// 	.attr("x", placeRight(chest*.5 + .5*(bicep-wrist)))
+		// 	.attr("y", heightScale(division*prop.wrist[0]))
+		// 	.attr("width", pixelWidth(wrist))
+		// 	.attr("height", scale(division*prop.wrist[1]));
+		// //lower leg left-->calf: width = 0.7*thigh
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "calf")
+		// 	.attr("x", placeLeft(thigh*.85))
+		// 	.attr("y", heightScale(division*prop.calf[0]))
+		// 	.attr("width", pixelWidth(thigh*.7))
+		// 	.attr("height", scale(division*prop.calf[1]));
+		// //lower leg right-->calf: width = 0.7*thigh
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "calf")
+		// 	.attr("x", placeRight(thigh*.15))
+		// 	.attr("y", heightScale(division*prop.calf[0]))
+		// 	.attr("width", pixelWidth(thigh*.7))
+		// 	.attr("height", scale(division*prop.calf[1]));
+		// //knee left
+		// svg.append("circle")
+		// 	.attr("class", "body")
+		// 	.attr("id", "knee")
+		// 	.attr("cx", placeLeft(thigh*.5))
+		// 	.attr("cy", heightScale(division*prop.knee[0]))
+		// 	.attr("r", scale(dia(knee)*.5));
+		// //knee right
+		// svg.append("circle")
+		// 	.attr("class", "body")
+		// 	.attr("id", "knee")
+		// 	.attr("cx", placeRight(thigh*.5))
+		// 	.attr("cy", heightScale(division*prop.knee[0]))
+		// 	.attr("r", scale(dia(knee)*.5));
+		// //feet-->based on height: width = 0.7*division
+		// //foot left
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "feet")
+		// 	.attr("x", placeLeft(thigh*.15) - scale(division*.7))
+		// 	.attr("y", heightScale(division*prop.feet[0]))
+		// 	.attr("width", scale(division*.7))
+		// 	.attr("height", scale(division*prop.feet[1]));
+		// //foot right
+		// svg.append("rect")
+		// 	.attr("class", "body")
+		// 	.attr("id", "feet")
+		// 	.attr("x", placeRight(thigh*.15))
+		// 	.attr("y", heightScale(division*prop.feet[0]))
+		// 	.attr("width", scale(division*.7))
+		// 	.attr("height", scale(division*prop.feet[1]));
+
+
+		// //style appending
+		// d3.selectAll(".body")
+		// 	.attr("rx", "20")
+		// 	.attr("ry", "20");
+		// d3.selectAll("#wrist")
+		// 	.attr("rx", "2")
+		// 	.attr("ry", "2");
+		// d3.select("#head")
+		// 	.attr("rx", scale(division*(.7)*.5))
+		// 	.attr("ry", scale(division*.5));
+		// // d3.selectAll("#feet")
+		// // 	.attr("rx", "3")
+		// // 	.attr("ry", "3");
+
+
+		//height slider
+		///////////////////////////////////////////////////////////////////////
+		document.getElementById("slider").onchange =
+			function () {
+				var setting = "0 0 400 " + document.getElementById("slider").value;
+				document.getElementById("canvas").setAttribute("viewBox", setting);
+				console.log(setting);
+			};
+
+	</script>
+=======
+<p> Testdsadsadasdasdsa </p>
+>>>>>>> 1be93798f7b440b91872ab0351bb8d4e804a58b0
+</body>
+</html>
