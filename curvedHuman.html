@@ -21,7 +21,14 @@
 <h1>Add Content Below </h1>
 <p> Test </p>
 
-	<input id="slider" type="range" min="800" max="1200" value="1000"/>
+	Chest Slider
+	<input id="chestSlider" type="range" min="80" max="110" value="95"/>
+
+	Abdomen Slider
+	<input id="absSlider" type="range" min="75" max="105" value="90"/>
+
+	Hip Slider
+	<input id="hipSlider" type="range" min="83" max="113" value="98"/>
 	
 	<div id="divCanvas"></div>
 
@@ -195,68 +202,92 @@
 		};
 		//drawing human figure with SVG path
 		///////////////////////////////////////////////////////////////////////
+		var drawNeck = function() {
+			return 	"M " + placeCenterL(neck) + " " + heightScale(division*prop.neck[0]) + " " +
+					"V " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " +
+					"Q " + center + " " + heightScale(division*(prop.neck[0]-prop.neck[1]-0.3)) + " " + 
+						placeCenterR(neck) + " " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " + 
+					"V " + heightScale(division*(prop.neck[0])) + " " +
+					"Z";
+		};
+		var drawUpper = function() {
+			return	"M " + placeCenterR(neck) + " " + heightScale(division*prop.chest[0]) + " " +
+					"Q " + center + " " + heightScale(division*(prop.chest[0]-0.3)) + " " +
+						placeCenterL(neck) + " " + heightScale(division*(prop.chest[0])) + " " + 
+					"Q " + placeCenterL(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
+						placeCenterL((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+					"L " + placeCenterL((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+						(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+					"L " + placeCenterL(chest) + " " + heightScale(division*prop.chest[1]) + " " +
+					BezierCirL(chest, prop.chest[1], abs, prop.abs[0]) + " " +
+					BezierCirL(abs, prop.abs[0], hip, prop.hip[0]) + " " +
+					"H " + placeCenterR(hip) + " " +
+					BezierCirR(hip, prop.hip[0], abs, prop.abs[0]) + " " +
+					BezierCirR(abs, prop.abs[0], chest, prop.chest[1]) + " " +
+					"L " + placeCenterR((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+						(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+					"L " + placeCenterR((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+					"Q " + placeCenterR(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
+						placeCenterR(neck) + " " + heightScale(division*(prop.chest[0])) + " " +
+					"Z";
+		};
+		var drawLower = function() {
+	 		return	"M " + placeCenterL(hip) + " " +heightScale(division*prop.hip[0]) + " " +
+	 				BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
+	 				BezierCirLL(thigh, prop.thigh[0], (0.5*(thigh-knee)+knee), prop.knee[0]) + " " + 
+	 				"L " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+	 				"H " + placeLeft(0.5*thigh-0.5*ankle) + " " +
+	 				BezierCirLL(0.5*thigh-0.5*ankle, prop.feet[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " + 
+	 				BezierCirLL(0.5*thigh-0.5*knee, prop.knee[0], 0, prop.thigh[0]) + " " +
+	 				BezierCirRR(0, prop.thigh[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " +
+	 				BezierCirRR(0.5*thigh-0.5*knee, prop.knee[0], 0.5*thigh-0.5*ankle, prop.feet[0]) + " " +
+	 				"H " + placeRight(0.5*thigh+0.5*ankle) + " " +
+	 				"L " + placeRight(0.5*thigh+0.5*knee) + " " + heightScale(division*prop.knee[0]) + " " +
+	 				BezierCirRR((0.5*(thigh-knee)+knee), prop.knee[0], thigh, prop.thigh[0]) + " " +
+	 				BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
+	 				"Z";
+		};
 		//appending neck
-		svg.append("path")
+		var neckSVG = svg.append("path")
 			.attr("class", "body")
 			.attr("id", "neck")
-			.attr("d", 
-				"M " + placeCenterL(neck) + " " + heightScale(division*prop.neck[0]) + " " +
-				"V " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " +
-				"Q " + center + " " + heightScale(division*(prop.neck[0]-prop.neck[1]-0.3)) + " " + 
-					placeCenterR(neck) + " " + heightScale(division*(prop.neck[0]-prop.neck[1])) + " " + 
-				"V " + heightScale(division*(prop.neck[0])) + " " +
-				"Z"
-				)
+			.attr("d", drawNeck())
 			.style("fill", "#FFCC66");
 		//appending upper body
-		svg.append("path")
+		var upperSVG = svg.append("path")
 			.attr("class", "body")
 			.attr("id", "upper")
-			.attr("d", 
-				"M " + placeCenterR(neck) + " " + heightScale(division*prop.chest[0]) + " " +
-				"Q " + center + " " + heightScale(division*(prop.chest[0]-0.3)) + " " +
-					placeCenterL(neck) + " " + heightScale(division*(prop.chest[0])) + " " + 
-				"Q " + placeCenterL(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
-					placeCenterL((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
-				"L " + placeCenterL((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
-					(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
-				"L " + placeCenterL(chest) + " " + heightScale(division*prop.chest[1]) + " " +
-				BezierCirL(chest, prop.chest[1], abs, prop.abs[0]) + " " +
-				BezierCirL(abs, prop.abs[0], hip, prop.hip[0]) + " " +
-				"H " + placeCenterR(hip) + " " +
-				BezierCirR(hip, prop.hip[0], abs, prop.abs[0]) + " " +
-				BezierCirR(abs, prop.abs[0], chest, prop.chest[1]) + " " +
-				"L " + placeCenterR((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
-					(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
-				"L " + placeCenterR((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
-				"Q " + placeCenterR(1.1*chest) + " " + heightScale(division*prop.chest[0]) + " " +
-					placeCenterR(neck) + " " + heightScale(division*(prop.chest[0])) + " " +
-				"Z"
-			)
+			.attr("d", drawUpper())
 			.style("fill", "red");
- 		//apendding lower body
- 		svg.append("path")
- 			.attr("class", "body")
- 			.attr("id", "lower")
- 			.attr("d",
- 				"M " + placeCenterL(hip) + " " +heightScale(division*prop.hip[0]) + " " +
- 				BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
- 				BezierCirLL(thigh, prop.thigh[0], (0.5*(thigh-knee)+knee), prop.knee[0]) + " " + 
- 				"L " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
- 				"H " + placeLeft(0.5*thigh-0.5*ankle) + " " +
- 				BezierCirLL(0.5*thigh-0.5*ankle, prop.feet[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " + 
- 				BezierCirLL(0.5*thigh-0.5*knee, prop.knee[0], 0, prop.thigh[0]) + " " +
- 				BezierCirRR(0, prop.thigh[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " +
- 				BezierCirRR(0.5*thigh-0.5*knee, prop.knee[0], 0.5*thigh-0.5*ankle, prop.feet[0]) + " " +
- 				"H " + placeRight(0.5*thigh+0.5*ankle) + " " +
- 				"L " + placeRight(0.5*thigh+0.5*knee) + " " + heightScale(division*prop.knee[0]) + " " +
- 				BezierCirRR((0.5*(thigh-knee)+knee), prop.knee[0], thigh, prop.thigh[0]) + " " +
- 				BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
- 				"Z"
- 			)
- 			.style("fill", "blue");
+	 	//apendding lower body
+		var lowerSVG = svg.append("path")
+	 		.attr("class", "body")
+	 		.attr("id", "lower")
+	 		.attr("d", drawLower())
+	 		.style("fill", "blue");
  		//apendding left arm
-
+ 		
+ 		//example of dynamic manipulation
+ 		document.getElementById("chestSlider").onchange = 
+ 			function() {
+ 				chest = document.getElementById("chestSlider").value;
+ 				upperSVG.transition()
+ 					.attr("d", drawUpper());
+ 			};
+ 		document.getElementById("absSlider").onchange = 
+ 			function() {
+ 				abs = document.getElementById("absSlider").value;
+ 				upperSVG.transition()
+ 					.attr("d", drawUpper());
+ 			};
+ 		document.getElementById("hipSlider").onchange = 
+ 			function() {
+ 				hip = document.getElementById("hipSlider").value;
+ 				upperSVG.transition()
+ 					.attr("d", drawUpper());
+ 				lowerSVG.transition()
+ 					.attr("d", drawLower());
+ 			};
 		// //drawing human figure with shapes
 		// ///////////////////////////////////////////////////////////////////////
 		// //neck
@@ -428,18 +459,15 @@
 		// // 	.attr("ry", "3");
 
 
-		//height slider
-		///////////////////////////////////////////////////////////////////////
-		document.getElementById("slider").onchange =
-			function () {
-				var setting = "0 0 400 " + document.getElementById("slider").value;
-				document.getElementById("canvas").setAttribute("viewBox", setting);
-				console.log(setting);
-			};
+		// //height slider
+		// ///////////////////////////////////////////////////////////////////////
+		// document.getElementById("slider").onchange =
+		// 	function () {
+		// 		var setting = "0 0 400 " + document.getElementById("slider").value;
+		// 		document.getElementById("canvas").setAttribute("viewBox", setting);
+		// 		console.log(setting);
+		// 	};
 
 	</script>
-=======
-<p> Testdsadsadasdasdsa </p>
->>>>>>> 1be93798f7b440b91872ab0351bb8d4e804a58b0
 </body>
 </html>
