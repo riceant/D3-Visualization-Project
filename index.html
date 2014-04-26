@@ -56,6 +56,56 @@
 		var forearm = 28;
 		var wrist = 18;
 
+		//body height diensions based
+		///////////////////////////////////////////////////////////////////////
+		// average drawn figure-->height is equivalent to 7.5 heads
+		var average = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 1],
+			"abs": [5.75, 1],
+			"hip": [4.75, 1],
+			"thigh": [4, 1.95],
+			"calf": [1.95, 1.65],
+			"feet": [0.3, 0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		// ideal drawn figure-->height is equivalent to 8 heads
+		var ideal = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 1],
+			"abs": [5.75, 1],
+			"hip": [4.75, 1],
+			"thigh": [4, 1.95],
+			"calf": [1.95, 1.65],
+			"feet": [0.3, 0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		// heroic drawn figure-->height is equivalent to 8.5 heads
+		var heroic = {
+			"head": [7.5, 0.5],
+			"neck": [7.15, 0.4],
+			"chest": [6.75, 1],
+			"abs": [5.75, 1],
+			"hip": [4.75, 1],
+			"thigh": [4, 1.95],
+			"calf": [1.95, 1.65],
+			"feet": [0.3, 0.3],
+			"knee": [2],
+			"bicep": [6.8, 1.8],
+			"forearm": [5, 1],
+			"wrist": [4, .1]
+		};
+		var prop = ideal;
+
+
 		//conversion and scale functions
 		///////////////////////////////////////////////////////////////////////
 		//conversion functions
@@ -116,134 +166,135 @@
 			.attr("class", "body")
 			.attr("id", "neck")
 			.attr("x", placeCenter(neck))
-			.attr("y", heightScale(division*7.2))
+			.attr("y", heightScale(division*prop.neck[0]))
 			.attr("width", pixelWidth(neck))
-			.attr("height", scale(division*.4));
+			.attr("height", scale(division*prop.neck[1]));
 		//head
 		svg.append("ellipse")
 			.attr("class", "body")
 			.attr("id", "head")
 			.attr("cx", center)
-			.attr("cy", heightScale(division*7.5))
+			.attr("cy", heightScale(division*prop.head[0]))
 			.attr("rx", scale(division*(.7)*.5))
-			.attr("ry", scale(division*.5));
+			.attr("ry", scale(division*prop.head[1]));
 		//chest
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "chest")
 			.attr("x", placeCenter(chest))
-			.attr("y", heightScale(division*6.8))
+			.attr("y", heightScale(division*prop.chest[0]))
 			.attr("width", pixelWidth(chest))
-			.attr("height", scale(division*1.2));
+			.attr("height", scale(division*prop.chest[1]));
 		//abdomen
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "chest")
 			.attr("x", placeCenter(abs))
-			.attr("y", heightScale(division*5.6))
+			.attr("y", heightScale(division*prop.abs[0]))
 			.attr("width", pixelWidth(abs))
-			.attr("height", scale(division*1.1));
+			.attr("height", scale(division*prop.abs[1]));
 		//hip
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "hip")
 			.attr("x", placeCenter(hip))
-			.attr("y", heightScale(division*4.5))
+			.attr("y", heightScale(division*prop.hip[0]))
 			.attr("width", pixelWidth(hip))
-			.attr("height", scale(division*.5));
+			.attr("height", scale(division*prop.hip[1]));
 		//bicep left
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "bicep")
 			.attr("x", placeCenter(chest+2*bicep))
-			.attr("y", heightScale(division*6.8))
+			.attr("y", heightScale(division*prop.bicep[0]))
 			.attr("width", pixelWidth(bicep))
-			.attr("height", scale(division*1.8));
+			.attr("height", scale(division*prop.bicep[1]))
+			.attr("transform", "rotate(15 " + heightScale(division*(prop.bicep[0]+0.5*prop.bicep[0])) + " " + pixelWidth(bicep) + ")");
 		//bicep right
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "bicep")
 			.attr("x", placeCenterR(chest))
-			.attr("y", heightScale(division*6.8))
+			.attr("y", heightScale(division*prop.bicep[0]))
 			.attr("width", pixelWidth(bicep))
-			.attr("height", scale(division*1.8));
+			.attr("height", scale(division*prop.bicep[1]));
 		//forearm left
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "forearm")
 			.attr("x", placeCenter(chest+bicep+forearm))
-			.attr("y", heightScale(division*5))
+			.attr("y", heightScale(division*prop.forearm[0]))
 			.attr("width", pixelWidth(forearm))
-			.attr("height", scale(division*1));
+			.attr("height", scale(division*prop.forearm[1]));
 		//forearm right
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "forearm")
 			.attr("x", placeRight(chest*.5 + .5*(bicep-forearm)))
-			.attr("y", heightScale(division*5))
+			.attr("y", heightScale(division*prop.forearm[0]))
 			.attr("width", pixelWidth(forearm))
-			.attr("height", scale(division*1));
+			.attr("height", scale(division*prop.forearm[1]));
 		//thigh left
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "thigh")
 			.attr("x", placeLeft(thigh))
-			.attr("y", heightScale(division*4))
+			.attr("y", heightScale(division*prop.thigh[0]))
 			.attr("width", pixelWidth(thigh))
-			.attr("height", scale(division*1.7));
+			.attr("height", scale(division*prop.thigh[1]));
 		//thigh right
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "thigh")
 			.attr("x", center)
-			.attr("y", heightScale(division*4))
+			.attr("y", heightScale(division*prop.thigh[0]))
 			.attr("width", pixelWidth(thigh))
-			.attr("height", scale(division*1.7));
+			.attr("height", scale(division*prop.thigh[1]));
 		//wrist left
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "wrist")
 			.attr("x", placeCenter(chest+bicep+wrist))
-			.attr("y", heightScale(division*4))
+			.attr("y", heightScale(division*prop.wrist[0]))
 			.attr("width", pixelWidth(wrist))
-			.attr("height", scale(division*.1));
+			.attr("height", scale(division*prop.wrist[1]));
 		//wrist left
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "wrist")
 			.attr("x", placeRight(chest*.5 + .5*(bicep-wrist)))
-			.attr("y", heightScale(division*4))
+			.attr("y", heightScale(division*prop.wrist[0]))
 			.attr("width", pixelWidth(wrist))
-			.attr("height", scale(division*.1));
+			.attr("height", scale(division*prop.wrist[1]));
 		//lower leg left-->calf: width = 0.7*thigh
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "calf")
 			.attr("x", placeLeft(thigh*.85))
-			.attr("y", heightScale(division*2.2))
+			.attr("y", heightScale(division*prop.calf[0]))
 			.attr("width", pixelWidth(thigh*.7))
-			.attr("height", scale(division*1.9));
+			.attr("height", scale(division*prop.calf[1]));
 		//lower leg right-->calf: width = 0.7*thigh
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "calf")
 			.attr("x", placeRight(thigh*.15))
-			.attr("y", heightScale(division*2.2))
+			.attr("y", heightScale(division*prop.calf[0]))
 			.attr("width", pixelWidth(thigh*.7))
-			.attr("height", scale(division*1.9));
+			.attr("height", scale(division*prop.calf[1]));
 		//knee left
 		svg.append("circle")
 			.attr("class", "body")
 			.attr("id", "knee")
 			.attr("cx", placeLeft(thigh*.5))
-			.attr("cy", heightScale(division*2.25))
+			.attr("cy", heightScale(division*prop.knee[0]))
 			.attr("r", scale(dia(knee)*.5));
 		//knee right
 		svg.append("circle")
 			.attr("class", "body")
 			.attr("id", "knee")
 			.attr("cx", placeRight(thigh*.5))
-			.attr("cy", heightScale(division*2.25))
+			.attr("cy", heightScale(division*prop.knee[0]))
 			.attr("r", scale(dia(knee)*.5));
 		//feet-->based on height: width = 0.7*division
 		//foot left
@@ -251,23 +302,23 @@
 			.attr("class", "body")
 			.attr("id", "feet")
 			.attr("x", placeLeft(thigh*.15) - scale(division*.7))
-			.attr("y", heightScale(division*.3))
+			.attr("y", heightScale(division*prop.feet[0]))
 			.attr("width", scale(division*.7))
-			.attr("height", scale(division*.3));
+			.attr("height", scale(division*prop.feet[1]));
 		//foot right
 		svg.append("rect")
 			.attr("class", "body")
 			.attr("id", "feet")
 			.attr("x", placeRight(thigh*.15))
-			.attr("y", heightScale(division*.3))
+			.attr("y", heightScale(division*prop.feet[0]))
 			.attr("width", scale(division*.7))
-			.attr("height", scale(division*.3));
+			.attr("height", scale(division*prop.feet[1]));
 
 
 		//style appending
 		d3.selectAll(".body")
-			.attr("rx", "10")
-			.attr("ry", "10");
+			.attr("rx", "20")
+			.attr("ry", "20");
 		d3.selectAll("#wrist")
 			.attr("rx", "2")
 			.attr("ry", "2");
