@@ -68,7 +68,7 @@
 		var forearm = 28;
 		var wrist = 18;
 		//additional
-		var armWidth = 0.5;
+		var armWidth = 0.27;
 
 		//body height diensions based
 		///////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@
 			"arm": [6.3],
 			"abs": [5.25],
 			"hip": [4.1],
-			"thigh": [3],
+			"thigh": [3.4],
 			"feet": [0.3],
 			"knee": [2],
 			"bicep": [6.8, 1.8],
@@ -231,9 +231,30 @@
 						placeCenterR(neck) + " " + heightScale(division*(prop.chest[0])) + " " +
 					"Z";
 		};
+		var drawLeftArm = function() {
+			return  "M " + placeCenterL((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+					"L " + placeCenterL((1+3*armWidth)*chest) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterL((1+4*armWidth)*chest) + " " + heightScale(division*prop.wrist[0]) + " " +
+					"H " + placeCenterL((1+4*armWidth)*chest - 2*wrist) + " " +
+					"L " + placeCenterL((1+3*armWidth)*chest - 2*wrist) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterL((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+						(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+					"Z";
+		};
+		var drawRightArm = function() {
+			return  "M " + placeCenterR((1+2*armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+					"L " + placeCenterR((1+3*armWidth)*chest) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterR((1+4*armWidth)*chest) + " " + heightScale(division*prop.wrist[0]) + " " +
+					"H " + placeCenterR((1+4*armWidth)*chest - 2*wrist) + " " +
+					"L " + placeCenterR((1+3*armWidth)*chest - 2*wrist) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterR((1+2*armWidth)*chest-(1.41*bicep)) + " " + 
+						(heightScale(division*prop.arm[0])+(pixelWidth(bicep)/1.41)) + " " +
+					"Z";
+		};
 		var drawLower = function() {
 	 		return	"M " + placeCenterL(hip) + " " +heightScale(division*prop.hip[0]) + " " +
-	 				BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
+	 				"L " + placeLeft(thigh) + " " + heightScale(division*prop.thigh[0]) + " " +
+	 				//BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
 	 				BezierCirLL(thigh, prop.thigh[0], (0.5*(thigh-knee)+knee), prop.knee[0]) + " " + 
 	 				"L " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
 	 				"H " + placeLeft(0.5*thigh-0.5*ankle) + " " +
@@ -244,7 +265,8 @@
 	 				"H " + placeRight(0.5*thigh+0.5*ankle) + " " +
 	 				"L " + placeRight(0.5*thigh+0.5*knee) + " " + heightScale(division*prop.knee[0]) + " " +
 	 				BezierCirRR((0.5*(thigh-knee)+knee), prop.knee[0], thigh, prop.thigh[0]) + " " +
-	 				BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
+	 				"L " + placeCenterR(hip) + " " + heightScale(division*prop.hip[0]) + " " +
+	 				//BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
 	 				"Z";
 		};
 		//appending neck
@@ -259,6 +281,18 @@
 			.attr("id", "upper")
 			.attr("d", drawUpper())
 			.style("fill", "red");
+		//apend left arm
+		var leftArmSVG = svg.append("path")
+			.attr("class", "body")
+			.attr("id", "leftArm")
+			.attr("d", drawLeftArm())
+			.style("fill", "#FFCC66");
+		//apend right arm
+		var rightArmSVG = svg.append("path")
+			.attr("class", "body")
+			.attr("id", "leftArm")
+			.attr("d", drawRightArm())
+			.style("fill", "#FFCC66");
 	 	//apendding lower body
 		var lowerSVG = svg.append("path")
 	 		.attr("class", "body")
@@ -271,23 +305,34 @@
  		document.getElementById("chestSlider").onchange = 
  			function() {
  				chest = document.getElementById("chestSlider").value;
- 				upperSVG.transition()
- 					.attr("d", drawUpper());
+				update();
  			};
  		document.getElementById("absSlider").onchange = 
  			function() {
  				abs = document.getElementById("absSlider").value;
- 				upperSVG.transition()
- 					.attr("d", drawUpper());
+ 				update();
  			};
  		document.getElementById("hipSlider").onchange = 
  			function() {
  				hip = document.getElementById("hipSlider").value;
- 				upperSVG.transition()
- 					.attr("d", drawUpper());
- 				lowerSVG.transition()
- 					.attr("d", drawLower());
+	 			update();
  			};
+
+ 		//update function--->call this once you have changed a measurement 
+ 		//				     property to update the figure
+ 		///////////////////////////////////////////////////////////////////////
+ 		var update = function() { 
+			neckSVG.transition()
+				.attr("d", drawNeck());
+			upperSVG.transition()
+				.attr("d", drawUpper());
+			leftArmSVG.transition()
+				.attr("d", drawLeftArm());
+			rightArmSVG.transition()
+				.attr("d", drawRightArm());
+			lowerSVG.transition()
+				.attr("d", drawLower());			
+ 		};
 		// //drawing human figure with shapes
 		// ///////////////////////////////////////////////////////////////////////
 		// //neck
