@@ -289,5 +289,50 @@
 			};
 
 	</script>
+
+	<h1>Parsing Data</h1>
+	<script type="text/javascript">
+	/*
+	$.getJSON("data/BodyFat.json", function(json) {
+    	console.log(json);
+    });
+*/
+	
+	d3.json("data/BodyFat.json", function (data) {
+		var calcFitY;
+		function fitLine(xVar,yVar){
+			var sumX = 0;
+			var sumY = 0;
+			var sumXY = 0;
+			var sumXsq = 0;
+			data.forEach(function(element){
+				sumX += element[xVar];
+				sumY += element[yVar];
+				sumXY += element[xVar]*element[yVar];
+				sumXsq += element[xVar]*element[xVar];
+			})
+			var slope = (data.length*sumXY - (sumX*sumY))/(data.length*sumXsq - (sumX*sumX));
+			var intercept = ((sumY - (slope*sumX))/data.length);
+			return calcFitY = function(x){
+				return slope*x+intercept;
+			}
+		}
+		function minmax(variable){
+			minmaxArr = {};
+			data.forEach(function(element){
+				sumX += element[variable];
+				sumY += element[yVar];
+				sumXY += element[xVar]*element[yVar];
+				sumXsq += element[xVar]*element[xVar];
+			})
+		}
+		calcFitYWrist = fitLine('WristC', 'PercentBodyFat');
+		console.log(calcFitYWrist(27));
+		calcFitYChest = fitLine('ChestC', 'PercentBodyFat');
+		console.log(calcFitYChest(27));
+		console.log(calcFitYWrist(27));
+	})
+
+	</script>
 </body>
 </html>
