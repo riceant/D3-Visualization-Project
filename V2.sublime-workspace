@@ -1,0 +1,796 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"place",
+				"placeCenterR"
+			],
+			[
+				"stro",
+				"stroke-width"
+			],
+			[
+				"plac",
+				"placeCenter"
+			],
+			[
+				"marker",
+				"markerWidth"
+			],
+			[
+				"height",
+				"heightScale"
+			],
+			[
+				"right",
+				"rightArmSVG"
+			],
+			[
+				"draw",
+				"drawLeftArm"
+			],
+			[
+				"left",
+				"leftArmSVG"
+			],
+			[
+				"rig",
+				"rightArmSVG"
+			],
+			[
+				"div",
+				"division"
+			],
+			[
+				"ar",
+				"armWidth"
+			],
+			[
+				"Ca",
+				"CACHE_LINE"
+			],
+			[
+				"di",
+				"directory2"
+			],
+			[
+				"new",
+				"newpdt"
+			],
+			[
+				"PDE",
+				"PDEPointer"
+			],
+			[
+				"pi",
+				"pixelWidth"
+			],
+			[
+				"view",
+				"viewBox"
+			],
+			[
+				"arrayl",
+				"arraylist_get"
+			],
+			[
+				"hash",
+				"hashtable_free"
+			],
+			[
+				"array",
+				"arraylist_add"
+			],
+			[
+				"buff",
+				"buffer_size"
+			],
+			[
+				"bu",
+				"buckets"
+			],
+			[
+				"arry",
+				"arraylist_new"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"a",
+				"arraylist"
+			],
+			[
+				"select",
+				"selectAll"
+			],
+			[
+				"point",
+				"pointCircles"
+			],
+			[
+				"hast",
+				"hashtable_free"
+			],
+			[
+				"error",
+				"errorCode"
+			],
+			[
+				"has",
+				"hashtable"
+			],
+			[
+				"num",
+				"numOfBins"
+			],
+			[
+				"ca",
+				"cauchy1000"
+			],
+			[
+				"ex",
+				"exp100"
+			],
+			[
+				"normal",
+				"normal1000"
+			],
+			[
+				"bin",
+				"binWidth"
+			],
+			[
+				"plot",
+				"plotHistogram"
+			],
+			[
+				"bo",
+				"boulder"
+			],
+			[
+				"y",
+				"yAxis"
+			],
+			[
+				"bir",
+				"birds"
+			],
+			[
+				"lo",
+				"logProb"
+			],
+			[
+				"bird",
+				"birdIndex"
+			],
+			[
+				"locati",
+				"locationSum"
+			],
+			[
+				"locat",
+				"locationProb"
+			],
+			[
+				"rand",
+				"randomExponential"
+			],
+			[
+				"per",
+				"percent"
+			],
+			[
+				"cris",
+				"crispEdges"
+			],
+			[
+				"United",
+				"United_States"
+			],
+			[
+				"color",
+				"colorDivision"
+			],
+			[
+				"Ind",
+				"India"
+			],
+			[
+				"S",
+				"Saudi_Arabia"
+			],
+			[
+				"U",
+				"United_States"
+			],
+			[
+				"GDP",
+				"GDPAxis"
+			],
+			[
+				"Com",
+				"compareAxis"
+			],
+			[
+				"yC",
+				"yCompareAxis"
+			],
+			[
+				"yCo",
+				"yCompareScale"
+			],
+			[
+				"line",
+				"lineCompare"
+			],
+			[
+				"id",
+				"idTop"
+			],
+			[
+				"countryInde",
+				"countryIndex-1"
+			],
+			[
+				"wh",
+				"whatYear"
+			],
+			[
+				"what",
+				"whatYear2"
+			],
+			[
+				"cou",
+				"countryIndex"
+			],
+			[
+				"com",
+				"compareArea"
+			],
+			[
+				"even",
+				"event"
+			],
+			[
+				"event",
+				"eventPoints"
+			],
+			[
+				"fons",
+				"font-size"
+			],
+			[
+				"in",
+				"info2012"
+			],
+			[
+				"country",
+				"countryGDP"
+			],
+			[
+				"coun",
+				"countryGDP"
+			],
+			[
+				"M",
+				"MoneyFormat"
+			],
+			[
+				"percen",
+				"percentFormat"
+			],
+			[
+				"s",
+				"sans-serif"
+			],
+			[
+				"info",
+				"infoId"
+			],
+			[
+				"GD",
+				"GDP10B"
+			],
+			[
+				"ti",
+				"tickSize"
+			],
+			[
+				"xA",
+				"xAxisTop"
+			],
+			[
+				"o",
+				"opacity"
+			],
+			[
+				"selec",
+				"selectAll"
+			],
+			[
+				"G",
+				"GDPMax"
+			],
+			[
+				"yGD",
+				"yGDPAxisScale"
+			],
+			[
+				"yG",
+				"yGDPAxisScale"
+			],
+			[
+				"yGDP",
+				"yGDPAxis"
+			],
+			[
+				"x",
+				"xLength"
+			],
+			[
+				"map",
+				"mapData"
+			],
+			[
+				"pro",
+				"projection"
+			],
+			[
+				"count",
+				"countryIndex"
+			],
+			[
+				"sel",
+				"selectAll"
+			],
+			[
+				"random",
+				"randomColor"
+			],
+			[
+				"ran",
+				"randomColor"
+			],
+			[
+				"colo",
+				"colorSize"
+			],
+			[
+				"rad",
+				"randomColor"
+			],
+			[
+				"yAxis",
+				"yAxisScale"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"re",
+				"review"
+			],
+			[
+				"fiv",
+				"fivestartokens"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"fo",
+				"forEach"
+			],
+			[
+				"word",
+				"wordRanks"
+			],
+			[
+				"l",
+				"linear"
+			],
+			[
+				"tex",
+				"textContent"
+			],
+			[
+				"border-r",
+				"border-right"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"border-",
+				"border-top"
+			],
+			[
+				"get",
+				"getElementById"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "curvedHuman.html",
+			"settings":
+			{
+				"buffer_size": 27242,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 11193,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Colin/Documents/CS 3410/fast.txt",
+		"/C/Users/Colin/Documents/CS 3410/almost.txt",
+		"/C/Users/Colin/Documents/CS 3410/misses.txt",
+		"/C/Users/Colin/Documents/CS 3410/misses3.txt",
+		"/C/Users/Colin/Documents/CS 3410/misses5.txt",
+		"/C/Users/Colin/Documents/CS 3410/misses4.txt",
+		"/C/Users/Colin/Documents/CS 3410/misses2.txt",
+		"/C/Users/Colin/Documents/CS 3410/pa3/trainers/src/cacheemall.h",
+		"/C/Users/Colin/Documents/CS 3410/vmem.c",
+		"/C/Users/Colin/Documents/CS 3410/hw2_code.c",
+		"/C/xampp/htdocs/CS3300/sampleDataSet.json",
+		"/C/Users/Colin/Documents/CS 3410/NarwhalBot.c",
+		"/C/Users/Colin/Documents/CS 3410/clab2.c",
+		"/C/Users/Colin/Documents/CS 3410/arraylist.c",
+		"/C/xampp/htdocs/CS3300/Noctilucous_Narwhals/Project1USETHISONE.html",
+		"/C/xampp/htdocs/CS3300/jan31.html",
+		"/C/xampp/htdocs/CS3300/hw6t.html",
+		"/C/xampp/htdocs/CS3300/hw6/template.html",
+		"/C/xampp/htdocs/mongodb/mongo.config",
+		"/C/Users/Colin/Documents/CS 3410/exploit.txt",
+		"/C/xampp/htdocs/CS3300/1-31_Lecture.html",
+		"/C/Users/Colin/Documents/CS 3410/hw6/template.html",
+		"/C/Users/Colin/Documents/CS 3410/lab3code.txt",
+		"/C/Users/Colin/Downloads/FLAT_RCL.txt",
+		"/C/Users/Colin/Downloads/A4StudentCode (1).zip",
+		"/C/xampp/htdocs/CS3300/perceptron.htm",
+		"/C/xampp/htdocs/CS3300/Alaska Department of Health and Social Services.htm",
+		"/C/xampp/htdocs/CS3300/4-9_Lecture.html",
+		"/C/xampp/htdocs/CS3300/apl9/package.json",
+		"/C/xampp/htdocs/CS3300/apl9/app.js",
+		"/C/xampp/htdocs/CS3300/NHTSATest.html",
+		"/C/xampp/htdocs/CS3300/jQuery1.11.0.js",
+		"/C/Users/Colin/Documents/CS 3410/fibTest.txt",
+		"/C/Users/Colin/Documents/CS 3410/MemoryTest.txt",
+		"/C/Users/Colin/Documents/CS 3410/Stall Test.txt",
+		"/C/Users/Colin/Documents/CS 3410/mipstest.txt",
+		"/C/Users/Colin/Documents/CS 3410/p1testcode.txt",
+		"/C/Users/Colin/Documents/CS 3410/i_hailstone.txt",
+		"/C/Users/Colin/Documents/CS 3410/P2TestFile.txt",
+		"/C/Users/Colin/Documents/CS 3410/Hailstone.txt",
+		"/C/Users/Colin/Downloads/the white tiger.txt",
+		"/C/Users/Colin/Documents/CS 3410/P1testing.txt",
+		"/C/xampp/htdocs/CS3300/mar24.html",
+		"/C/Users/Colin/workspace/JuggleFest/output.txt",
+		"/C/xampp/htdocs/CS3300/mar14.html",
+		"/C/xampp/htdocs/CS3300/mar19.html",
+		"/C/Users/Colin/Documents/CS 3410/mov-slt-test.txt",
+		"/C/xampp/htdocs/CS3300/Project1pushhold.html",
+		"/C/xampp/htdocs/CS3300/Homework5.html",
+		"/C/xampp/htdocs/CS3300/3-17_Lecture.html",
+		"/C/xampp/htdocs/CS3300/2-26_Lecture.html",
+		"/C/Users/Colin/Downloads/mar3 (2).html",
+		"/C/Users/Colin/Downloads/feb24.html",
+		"/C/xampp/htdocs/CS3300/HW4.html",
+		"/C/xampp/htdocs/CS3300/mar12.html",
+		"/C/Users/Colin/Downloads/feb28.html",
+		"/C/xampp/htdocs/CS3300/3-14_Lecture.html",
+		"/C/xampp/htdocs/CS3300/3-7_Lecture.html",
+		"/C/xampp/htdocs/CS3300/3-7.html",
+		"/C/xampp/htdocs/CS3300/mar3edited.html",
+		"/C/xampp/htdocs/CS3300/3-5_Lecture.html",
+		"/C/xampp/htdocs/CS3300/3-3_Lecture.html",
+		"/C/xampp/htdocs/CS3300/Noctilucous_Narwhals/dataManipulation.json",
+		"/C/xampp/htdocs/CS3300/Noctilucous_Narwhals/G20Data.json",
+		"/C/xampp/htdocs/CS3300/Noctilucous_Narwhals/Project1.html",
+		"/C/Users/Colin/Downloads/Project1.html",
+		"/C/xampp/htdocs/CS3300/feb26.html",
+		"/C/xampp/htdocs/CS3300/2-28_Lecture.html",
+		"/C/xampp/htdocs/CS3300/Project1.html",
+		"/C/xampp/htdocs/CS3300/2_24_Lecture.html",
+		"/C/xampp/htdocs/CS3300/G20Data.json",
+		"/C/Users/Colin/Downloads/feb21.html",
+		"/C/xampp/htdocs/CS3300/hw2.html",
+		"/C/xampp/htdocs/CS3300/animationDemo.html",
+		"/C/xampp/htdocs/CS3300/feb19.html",
+		"/C/xampp/htdocs/CS3300/feb14.html",
+		"/C/xampp/htdocs/CS3300/homework3.html",
+		"/C/xampp/htdocs/CS3300/homework2.html",
+		"/C/xampp/htdocs/CS3300/Homework1.html",
+		"/C/xampp/htdocs/CS3300/2-14_Lecture.html",
+		"/C/xampp/htdocs/CS3300/2-10_Lecture.html",
+		"/C/xampp/htdocs/CS3300/feb5.html",
+		"/C/xampp/htdocs/CS3300/hw3_2.html",
+		"/C/xampp/htdocs/CS3300/2-12_Lecture.html",
+		"/C/xampp/htdocs/CS3300/feb10.html",
+		"/C/xampp/htdocs/CS3300/2-3_Lecture.html",
+		"/C/Users/Colin/Downloads/feb5.html",
+		"/C/xampp/htdocs/CS3300/2-10_Lecture",
+		"/C/xampp/htdocs/CS3300/2-7_Lecture.html",
+		"/C/xampp/htdocs/CS3300/TempDemo.html",
+		"/C/xampp/htdocs/CS3300/2-5_Lecture.html"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"i+",
+			"zero",
+			"v1",
+			"$v1",
+			"v0",
+			"a3",
+			"a2",
+			"a1",
+			"a0",
+			"a3",
+			"v1",
+			"v0",
+			"a2",
+			"a0",
+			"a1",
+			"'\\0'",
+			"share",
+			"clusterte",
+			"pointTexts",
+			"create",
+			"create ",
+			"arraylist",
+			"buffer_size",
+			"6272",
+			"b839ab",
+			"b839",
+			"620",
+			"do_response",
+			"do_prompt",
+			"getuser",
+			"5d4",
+			"});\n",
+			"d3",
+			"<!",
+			"HAILSTONE",
+			"ADDUI",
+			"JAL",
+			"hcl",
+			"number.positive",
+			"detail",
+			"myLine",
+			"event",
+			"});\n",
+			"detail",
+			"19",
+			"text"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"\\$0",
+			"\\$3",
+			"\\$2",
+			"\\$7",
+			"\\$6",
+			"\\$5",
+			"\\$4",
+			"\\$7",
+			"\\$3",
+			"\\$2",
+			"\\$6",
+			"\\$4",
+			"\\$5",
+			"\"$5\"",
+			"$5",
+			"hashtable",
+			"N"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "curvedHuman.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27242,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11193,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "V2.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

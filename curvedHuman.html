@@ -4,7 +4,6 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<title>CS3300 Project 3 </title>
 	<style type="text/css">
 		.canvas {
 			background-color: #b7b7b7;
@@ -86,6 +85,8 @@
 			var number = (Math.round(dia(circumference)*10)/10).toFixed(1);
 			return number + "cm";
 		};
+		//width of output text
+		var textWidth = 60;
 
 		//body height diensions based ideal drawn figure-->height is equivalent to 8 heads
 		// prop is used for the curved human
@@ -382,6 +383,12 @@
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeRight(neck+1))
+				.attr("y", heightScale(division*(sprop.neck[0]-0.7*sprop.neck[1])))
+				.text(outputText(neck));
 			//head
 			svgShape.append("ellipse")
 				.attr("class", "body")
@@ -502,6 +509,18 @@
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterL(chest+bicep)-textWidth)
+				.attr("y", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
+				.text(outputText(bicep));
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterR(chest+bicep)+textWidth)
+				.attr("y", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
+				.text(outputText(bicep));
 			//forearm left
 			svgShape.append("rect")
 				.attr("class", "body")
@@ -539,6 +558,18 @@
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterL(chest+bicep)-textWidth)
+				.attr("y", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
+				.text(outputText(forearm));
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterR(chest+bicep)+textWidth)
+				.attr("y", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
+				.text(outputText(forearm));
 			//thigh left
 			svgShape.append("rect")
 				.attr("class", "body")
@@ -625,22 +656,67 @@
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
-			//lower leg left-->calf: width = 0.7*thigh
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterL(chest+bicep)-textWidth)
+				.attr("y", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
+				.text(outputText(wrist));
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterR(chest+bicep)+textWidth)
+				.attr("y", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
+				.text(outputText(wrist));
+			//lower leg left-->calf: width = ankle
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "calf")
-				.attr("x", placeLeft(thigh*.85))
+				.attr("x", placeCenterL(thigh+ankle))
 				.attr("y", heightScale(division*sprop.calf[0]))
-				.attr("width", pixelWidth(thigh*.7))
+				.attr("width", pixelWidth(ankle))
 				.attr("height", scale(division*sprop.calf[1]));
-			//lower leg right-->calf: width = 0.7*thigh
+			//lower leg right
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "calf")
-				.attr("x", placeRight(thigh*.15))
+				.attr("x", placeCenterR(thigh-ankle))
 				.attr("y", heightScale(division*sprop.calf[0]))
-				.attr("width", pixelWidth(thigh*.7))
+				.attr("width", pixelWidth(ankle))
 				.attr("height", scale(division*sprop.calf[1]));
+			//ankle measurements
+			svgShape.append("line")
+				.attr("class", "mesurements")
+				.attr("x1", placeCenterL(thigh+ankle))
+				.attr("x2", placeCenterL(thigh-ankle)-arrowWidth)
+				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.style("stroke", "black")
+				.attr("stroke-width", "2")
+				.attr("marker-start", "url(\#begin)")
+				.attr("marker-end", "url(\#end)");
+			svgShape.append("line")
+				.attr("class", "mesurements")
+				.attr("x1", placeCenterR(thigh+ankle))
+				.attr("x2", placeCenterR(thigh-ankle)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.style("stroke", "black")
+				.attr("stroke-width", "2")
+				.attr("marker-start", "url(\#begin)")
+				.attr("marker-end", "url(\#end)");
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterL(thigh+ankle)-0.6*textWidth)
+				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.text(outputText(ankle));
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterR(thigh+ankle)+0.6*textWidth)
+				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.text(outputText(ankle));
 			//knee left
 			svgShape.append("circle")
 				.attr("class", "body")
@@ -679,14 +755,14 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(thigh))
-				.attr("y", heightScale(division*(sprop.knee[0]+0.05)))
+				.attr("x", placeCenterL(thigh)-textWidth)
+				.attr("y", heightScale(division*(sprop.knee[0])))
 				.text(outputText(knee));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(thigh))
-				.attr("y", heightScale(division*(sprop.knee[0]+0.05)))
+				.attr("x", placeCenterR(thigh)+textWidth)
+				.attr("y", heightScale(division*(sprop.knee[0])))
 				.text(outputText(knee));
 			//feet-->based on height: width = 0.7*division
 			//foot left
