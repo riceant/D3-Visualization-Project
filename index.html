@@ -4,30 +4,58 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js" charset="utf-8"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<style type="text/css">
-		.canvas {
-			background-color: #b7b7b7;
-		}
-		.body {
-			fill: white;
-			stroke: black;
-			stroke-width: 1;
-		}
-	</style>
 <head>
 
 <body>
 <h1>Add Content Below </h1>
 <p> Test </p>
 
-	Chest Slider
-	<input id="chestSlider" type="range" min="80" max="110" value="95"/>
+<!-- //////////////////////////////////////////////////////////////////////////
+	The following code creates the two human figures. To change values on the figures, 
+	update one of the body demension variables (shown below with their initial value) 
+	and call the function update().
+	___________________________
+		var density = 1.05;
+		var age = 30;
+		var weight = 160;
+		var height = 70;
+		var neck = 38;
+		var chest = 95;
+		var abs = 90;
+		var hip = 98
+		var thigh = 58;
+		var knee = 38;
+		var ankle = 23;
+		var bicep = 32;
+		var forearm = 28;
+		var wrist = 18;
+	__________________________
+	////////////////////////////////////////////////////////////////////// -->
+	<div id="sliders" style="clear:left">
+		Chest Slider
+		<input id="chestSlider" type="range" min="80" max="110" value="95"/>
 
-	Abdomen Slider
-	<input id="absSlider" type="range" min="75" max="105" value="90"/>
+		Abdomen Slider
+		<input id="absSlider" type="range" min="75" max="105" value="90"/>
 
-	Hip Slider
-	<input id="hipSlider" type="range" min="83" max="113" value="98"/>
+		Hip Slider
+		<input id="hipSlider" type="range" min="83" max="113" value="98"/>
+
+		Thigh Slider
+		<input id="thighSlider" type="range" min="48" max="68" value="58"/>
+
+		Bicep Slider
+		<input id="bicepSlider" type="range" min="22" max="42" value="32"/>
+
+		Neck Slider
+		<input id="neckSlider" type="range" min="28" max="48" value="38"/>
+
+		Height Slider
+		<input id="heightSlider" type="range" min="50" max="90" value="70"/>
+
+		Knee Slider
+		<input id="kneeSlider" type="range" min="33" max="43" value="38"/>
+	</div>
 	
 	<div id="divCanvas" style="float:left"></div>
 	<div id="divCanvasShape" style="float=right"></div>
@@ -299,68 +327,35 @@
 		//appending paths and arrows and measurements to SVG
 		//appending neck
 		var neckSVG = svg.append("path")
-			.attr("class", "body")
+			.attr("class", "curvedBody")
 			.attr("id", "neck")
 			.attr("d", drawNeck())
 			.style("fill", "#FFCC66");
 		//appending upper body
 		var upperSVG = svg.append("path")
-			.attr("class", "body")
+			.attr("class", "curvedBody")
 			.attr("id", "upper")
 			.attr("d", drawUpper())
 			.style("fill", "red");
 		//apend left arm
 		var leftArmSVG = svg.append("path")
-			.attr("class", "body")
+			.attr("class", "curvedBody")
 			.attr("id", "leftArm")
 			.attr("d", drawLeftArm())
 			.style("fill", "#FFCC66");
 		//apend right arm
 		var rightArmSVG = svg.append("path")
-			.attr("class", "body")
+			.attr("class", "curvedBody")
 			.attr("id", "leftArm")
 			.attr("d", drawRightArm())
 			.style("fill", "#FFCC66");
 	 	//apendding lower body
 		var lowerSVG = svg.append("path")
-	 		.attr("class", "body")
+	 		.attr("class", "curvedBody")
 	 		.attr("id", "lower")
 	 		.attr("d", drawLower())
 	 		.style("fill", "blue");
  		
- 		//example of dynamic manipulation
- 		document.getElementById("chestSlider").onchange = 
- 			function() {
- 				chest = document.getElementById("chestSlider").value;
-				update();
- 			};
- 		document.getElementById("absSlider").onchange = 
- 			function() {
- 				abs = document.getElementById("absSlider").value;
- 				update();
- 			};
- 		document.getElementById("hipSlider").onchange = 
- 			function() {
- 				hip = document.getElementById("hipSlider").value;
-	 			update();
- 			};
-
- 		//update function--->call this once you have changed a measurement 
- 		//				     property to update the figure
- 		///////////////////////////////////////////////////////////////////////
- 		var update = function() { 
-			neckSVG.transition()
-				.attr("d", drawNeck());
-			upperSVG.transition()
-				.attr("d", drawUpper());
-			leftArmSVG.transition()
-				.attr("d", drawLeftArm());
-			rightArmSVG.transition()
-				.attr("d", drawRightArm());
-			lowerSVG.transition()
-				.attr("d", drawLower());			
- 		};
-
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
 		var shapeUpdate = function() {
@@ -374,7 +369,7 @@
 				.attr("height", scale(division*sprop.neck[1]));
 			//measure neck
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(neck))
 				.attr("x2", placeCenterL(neck)+arrowWidth)
 				.attr("y1", heightScale(division*prop.neck[1]))
@@ -407,7 +402,7 @@
 				.attr("height", scale(division*sprop.chest[1]));
 			//chest measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(chest))
 				.attr("x2", placeCenterL(chest)+arrowWidth)
 				.attr("y1", heightScale(division*prop.chest[1]))
@@ -432,7 +427,7 @@
 				.attr("height", scale(division*sprop.abs[1]));
 			//measure abdomen
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(abs))
 				.attr("x2", placeCenterL(abs)+arrowWidth)
 				.attr("y1", heightScale(division*prop.abs[0]))
@@ -457,7 +452,7 @@
 				.attr("height", scale(division*sprop.hip[1]));
 			//measure hip
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(hip))
 				.attr("x2", placeCenterL(hip)+arrowWidth)
 				.attr("y1", heightScale(division*prop.hip[0]))
@@ -490,7 +485,7 @@
 				.attr("height", scale(division*sprop.bicep[1]));
 			//bicept measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterL(chest))
 				.attr("x2", placeLeft(bicep+0.5*chest)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
@@ -500,7 +495,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(chest))
 				.attr("x2", placeRight(bicep+0.5*chest)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
@@ -539,7 +534,7 @@
 				.attr("height", scale(division*sprop.forearm[1]));
 			//forearm measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterL(chest+bicep+forearm))
 				.attr("x2", placeCenterL(chest+bicep-forearm)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
@@ -549,7 +544,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(chest+bicep+forearm))
 				.attr("x2", placeCenterR(chest+bicep-forearm)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
@@ -588,7 +583,7 @@
 				.attr("height", scale(division*sprop.thigh[1]));
 			//thigh measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", center)
 				.attr("x2", placeLeft(thigh)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
@@ -598,7 +593,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeRight(thigh))
 				.attr("x2", center+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
@@ -637,7 +632,7 @@
 				.attr("height", scale(division*sprop.wrist[1]));
 			//wrist measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterL(chest+bicep+wrist))
 				.attr("x2", placeCenterL(chest+bicep-wrist)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
@@ -647,7 +642,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(chest+bicep+wrist))
 				.attr("x2", placeCenterR(chest+bicep-wrist)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
@@ -686,7 +681,7 @@
 				.attr("height", scale(division*sprop.calf[1]));
 			//ankle measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterL(thigh+ankle))
 				.attr("x2", placeCenterL(thigh-ankle)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
@@ -696,7 +691,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(thigh+ankle))
 				.attr("x2", placeCenterR(thigh-ankle)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
@@ -733,7 +728,7 @@
 				.attr("r", scale(dia(knee)*.5));
 			//knee measurements
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterL(thigh+knee))
 				.attr("x2", placeCenterL(thigh-knee)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.knee[0])))
@@ -743,7 +738,7 @@
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
-				.attr("class", "mesurements")
+				.attr("class", "measurements")
 				.attr("x1", placeCenterR(thigh+knee))
 				.attr("x2", placeCenterR(thigh-knee)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.knee[0])))
@@ -787,19 +782,21 @@
 		shapeUpdate();
 
 		//style appending
-		d3.selectAll(".body")
-			.attr("rx", "20")
-			.attr("ry", "20");
-		d3.selectAll("#wrist")
-			.attr("rx", "2")
-			.attr("ry", "2");
-		d3.select("#head")
-			.attr("rx", scale(division*(.7)*.5))
-			.attr("ry", scale(division*.5));
-		// d3.selectAll("#feet")
-		// 	.attr("rx", "3")
-		// 	.attr("ry", "3");
-
+		var shapeStyle = function() {
+			d3.selectAll(".body")
+				.attr("rx", "20")
+				.attr("ry", "20");
+			d3.selectAll("#wrist")
+				.attr("rx", "2")
+				.attr("ry", "2");
+			d3.select("#head")
+				.attr("rx", scale(division*(.7)*.5))
+				.attr("ry", scale(division*.5));
+			// d3.selectAll("#feet")
+			// 	.attr("rx", "3")
+			// 	.attr("ry", "3");
+		};
+		shapeStyle();
 
 		// //height slider
 		// ///////////////////////////////////////////////////////////////////////
@@ -809,6 +806,74 @@
 		// 		document.getElementById("canvas").setAttribute("viewBox", setting);
 		// 		console.log(setting);
 		// 	};
+
+
+ 		//example of dynamic manipulation
+ 		document.getElementById("chestSlider").onchange = 
+ 			function() {
+ 				chest = +document.getElementById("chestSlider").value;
+				update();
+ 			};
+ 		document.getElementById("absSlider").onchange = 
+ 			function() {
+ 				abs = +document.getElementById("absSlider").value;
+ 				update();
+ 			};
+ 		document.getElementById("hipSlider").onchange = 
+ 			function() {
+ 				hip = +document.getElementById("hipSlider").value;
+	 			update();
+ 			};
+ 		document.getElementById("thighSlider").onchange = 
+ 			function() {
+ 				thigh = +document.getElementById("thighSlider").value;
+	 			update();
+ 			};
+  		document.getElementById("bicepSlider").onchange = 
+ 			function() {
+ 				bicep = +document.getElementById("bicepSlider").value;
+	 			update();
+ 			};
+  		document.getElementById("neckSlider").onchange = 
+ 			function() {
+ 				neck = +document.getElementById("neckSlider").value;
+	 			update();
+ 			};
+  		document.getElementById("heightSlider").onchange = 
+ 			function() {
+ 				height = +document.getElementById("heightSlider").value;
+	 			update();
+ 			};
+  		document.getElementById("kneeSlider").onchange = 
+ 			function() {
+ 				knee = +document.getElementById("kneeSlider").value;
+	 			update();
+ 			};
+
+ 		//update function--->call this once you have changed a measurement 
+ 		//				     property to update the figure
+ 		///////////////////////////////////////////////////////////////////////
+ 		var update = function() { 
+ 			//update height
+ 			division = cm(height)/8;
+ 			//updating path figure
+			neckSVG.transition()
+				.attr("d", drawNeck());
+			upperSVG.transition()
+				.attr("d", drawUpper());
+			leftArmSVG.transition()
+				.attr("d", drawLeftArm());
+			rightArmSVG.transition()
+				.attr("d", drawRightArm());
+			lowerSVG.transition()
+				.attr("d", drawLower());
+			//updating box figure
+			d3.selectAll(".body").remove();
+			d3.selectAll(".measurements").remove();
+			d3.selectAll(".textMeasurements").remove();
+			shapeUpdate();
+			shapeStyle();
+ 		};
 
 	</script>
 

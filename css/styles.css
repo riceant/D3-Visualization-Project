@@ -1,0 +1,13 @@
+.canvas {
+	background-color: #b7b7b7;
+}
+.body {
+	fill: white;
+	stroke: black;
+	stroke-width: 1;
+}
+.curvedBody {
+	stroke: black;
+	stroke-width: 1;
+}
+		
