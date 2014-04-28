@@ -15,6 +15,7 @@
 	and call the function update().
 	___________________________
 		var density = 1.05;
+		var percent =15;
 		var age = 30;
 		var weight = 160;
 		var height = 70;
@@ -54,6 +55,12 @@
 
 		Knee Slider
 		<input id="kneeSlider" type="range" min="33" max="43" value="38"/>
+
+		Wrist Slider
+		<input id="wristSlider" type="range" min="13" max="23" value="18"/>
+
+		Ankle Slider
+		<input id="ankleSlider" type="range" min="18" max="28" value="23"/>		
 	</div>
 	
 	<div id="divCanvas" style="float:left"></div>
@@ -90,6 +97,7 @@
 		// 	"percent": 1;
 		// };
 		var density = 1.05;
+		var percent = 15;
 		var age = 30;
 		var weight = 160;
 		var height = 70;
@@ -410,6 +418,12 @@
 			.attr("id", "upper")
 			.attr("d", drawUpper())
 			.style("fill", "red");
+	 	//apendding lower body
+		var lowerSVG = svg.append("path")
+	 		.attr("class", "curvedBody")
+	 		.attr("id", "lower")
+	 		.attr("d", drawLower())
+	 		.style("fill", "blue");
 		//apend left arm
 		var leftArmSVG = svg.append("path")
 			.attr("class", "curvedBody")
@@ -422,12 +436,6 @@
 			.attr("id", "leftArm")
 			.attr("d", drawRightArm())
 			.style("fill", "#FFCC66");
-	 	//apendding lower body
-		var lowerSVG = svg.append("path")
-	 		.attr("class", "curvedBody")
-	 		.attr("id", "lower")
-	 		.attr("d", drawLower())
-	 		.style("fill", "blue");
 	 	//append left shoe
 	 	var leftShoeSVG = svg.append("path")
 	 		.attr("class", "curvedBody")
@@ -924,6 +932,16 @@
  				knee = +document.getElementById("kneeSlider").value;
 	 			update();
  			};
+  		document.getElementById("wristSlider").onchange = 
+ 			function() {
+ 				wrist = +document.getElementById("wristSlider").value;
+	 			update();
+ 			};
+  		document.getElementById("ankleSlider").onchange = 
+ 			function() {
+ 				ankle = +document.getElementById("ankleSlider").value;
+	 			update();
+ 			};
 
  		//update function--->call this once you have changed a measurement 
  		//				     property to update the figure
@@ -942,9 +960,9 @@
 				.attr("d", drawRightArm());
 			lowerSVG.transition()
 				.attr("d", drawLower());
-			leftShoe.transition()
+			leftShoeSVG.transition()
 				.attr("d", drawLeftShoe());
-			rightShoe.transition()
+			rightShoeSVG.transition()
 				.attr("d", drawRightShoe());
 			//updating box figure
 			d3.selectAll(".body").remove();
