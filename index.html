@@ -8,7 +8,6 @@
 
 <body>
 <h1>Add Content Below </h1>
-<p> Test </p>
 
 <!-- //////////////////////////////////////////////////////////////////////////
 	The following code creates the two human figures. To change values on the figures, 
@@ -958,6 +957,7 @@
 	</script>
 
 	<h1>Parsing Data</h1>
+	<div id="graph"></div>
 	<script type="text/javascript">
 	/*
 	$.getJSON("data/BodyFat.json", function(json) {
@@ -966,7 +966,6 @@
 */
 	
 	d3.json("data/BodyFat.json", function (data) {
-		var calcFitY;
 		function fitLine(xVar,yVar){
 			var sumX = 0;
 			var sumY = 0;
@@ -980,24 +979,56 @@
 			})
 			var slope = (data.length*sumXY - (sumX*sumY))/(data.length*sumXsq - (sumX*sumX));
 			var intercept = ((sumY - (slope*sumX))/data.length);
-			return calcFitY = function(x){
-				return slope*x+intercept;
-			}
+			return function(x){ return slope*x+intercept; }
 		}
+
 		function minmax(variable){
-			minmaxArr = {};
+			var minVal = Number.POSITIVE_INFINITY;
+			var maxVal = Number.NEGATIVE_INFINITY;
 			data.forEach(function(element){
-				sumX += element[variable];
-				sumY += element[yVar];
-				sumXY += element[xVar]*element[yVar];
-				sumXsq += element[xVar]*element[xVar];
+				if (element[variable]<minVal){
+					minVal = element[variable];
+				}
+				if (element[variable]>maxVal){
+					maxVal = element[variable];
+				}
 			})
+			return [minVal,maxVal];
 		}
-		calcFitYWrist = fitLine('WristC', 'PercentBodyFat');
-		console.log(calcFitYWrist(27));
-		calcFitYChest = fitLine('ChestC', 'PercentBodyFat');
-		console.log(calcFitYChest(27));
-		console.log(calcFitYWrist(27));
+
+		function retLine(xVar,yVar){
+			var fitln = fitLine(xVar,yVar);
+			xVarminmaxX = minmax(xVar);
+			corrYwMinmax = [fitln(xVarminmaxX[0]),fitln(xVarminmaxX[1])];
+			return [{"x": xVarminmaxX[0],	"y": corrYwMinmax[0]},
+					{"x": xVarminmaxX[1],	"y": corrYwMinmax[1]}];
+		}
+
+		function plotGraph(xVar, yVar){
+			var svg = d3.select("#graph")
+				.append("svg")
+				.attr("height", 200)
+				.attr("width", 200);
+			//get the data
+			var lineData = retLine(xVar,yVar);
+			console.log(lineData);
+
+			var lineFunction = d3.svg.line()
+				.x(function(d) { return d.x; })
+				.y(function(d) { return d.y; })
+				.interpolate("linear");
+
+			//The line SVG Path we draw
+			var lineGraph = svg.append("path")
+				.attr("d", lineFunction(lineData))
+				.attr("stroke", "blue")
+				.attr("stroke-width", 2)
+				.attr("fill", "none");
+		}
+		plotGraph('ThighC', 'PercentBodyFat');
+		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
+		console.log(calcFitYThighC(27));
+		console.log(minmax('ThighC'));
 	})
 
 	</script>
