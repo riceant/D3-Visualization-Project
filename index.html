@@ -515,7 +515,7 @@
 			//abdomen
 			var AbdomenCSVG = svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "ChestC")
+				.attr("id", "AbdomenC")
 				.attr("x", placeCenterL(AbdomenC))
 				.attr("y", heightScale(division*sprop.AbdomenC[0]))
 				.attr("width", pixelWidth(AbdomenC))
@@ -1449,6 +1449,7 @@
 		//function createBodyListners(){
 			$(".body").click(function(){
 				var name = $(this).attr('id');
+				//console.log(name);
 				//Do nothing for head and feet
 				if ((name == "head")||(name == "feet")){
 				}else{
@@ -1458,7 +1459,9 @@
 					})
 					$('.fullwidth').hide();
 					//Set selected color
-					$(this).css("fill","red");
+					//$(this).css("fill","red");
+					d3.selectAll("#" + name).transition()
+						.style("fill", "red");
 					//Update the Slider
 					$('#bPart').html(name);
 					$('#'+name+'Slider').show();
