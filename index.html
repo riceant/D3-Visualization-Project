@@ -1005,33 +1005,41 @@
 		}
 
 		function retAllPts(xVar,yVar){
+			data.sort(function(a, b){
+			 return a[xVar]-b[xVar]
+			})
 			pointArr = [];
 			data.forEach(function(element){
 				xVal = element[xVar];
 				yVal = element[yVar];
-				pointArr.push({"x": xVal, "y": yVal});
+				pointArr.push({"x": xVal, "y": 100-yVal});
 			})
 			return pointArr;
 		}
 
 		function plotGraph(xVar, yVar){
+			xScaleMinmax = minmax();
+			yScaleMinmax = minmax();
+			//var xScale = d3.scale.linear().domain([0,200]).range([25,175]);
+			//var yScale = d3.scale.linear().domain([0,300]).range([175,25]);
+
 			var svg = d3.select("#graph")
 				.append("svg")
 				.attr("height", 100)
 				.attr("width", 100);
 			//get the data
-			var lineData = retLinePts(xVar,yVar);
+			var lineData = retAllPts(xVar,yVar);
 
 			var lineFunction = d3.svg.line()
 				.x(function(d) { return d.x; })
 				.y(function(d) { return d.y; })
-				.interpolate("linear");
+				.interpolate("bundle").tension(.3);
 
 			//The line SVG Path we draw
 			var lineGraph = svg.append("path")
 				.attr("d", lineFunction(lineData))
 				.attr("stroke", "blue")
-				.attr("stroke-width", 2)
+				.attr("stroke-width", 1)
 				.attr("fill", "none");
 		}
 		plotGraph('ThighC', 'PercentBodyFat');
