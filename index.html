@@ -1043,21 +1043,21 @@
 		var titlePadding = 100
 		var extraPadding = 20;
 		var heightGraph = 500;
-		var widthGraph = 500;
+		var widthGraph = 600;
 		function plotGraph(xVar, yVar){
 			xScaleMinmax = minmax(xVar);
 			yScaleMinmax = minmax(yVar);
 			xScale = d3.scale.linear().domain([dia(xScaleMinmax[0])*0.9,dia(xScaleMinmax[1])*1.1]).range([paddingGraph,widthGraph]);
-			yScale = d3.scale.linear().domain([yScaleMinmax[0]*0.9,yScaleMinmax[1]*1.1]).range([heightGraph+titlePadding-paddingGraph,extraPadding+titlePadding]);
+			yScale = d3.scale.linear().domain([yScaleMinmax[0]*0.9,yScaleMinmax[1]*1.1]).range([heightGraph+titlePadding-paddingGraph+extraPadding,extraPadding+titlePadding]);
 
 			var intFormat = d3.format("d");
 			var percentFormat = d3.format("%");
 			//axis
 			var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(function (d) {
-				return percentFormat(d/100);
+				return intFormat(d);
 			});
 			var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(function (d) {
-				return intFormat(d) + "cm";
+				return intFormat(d);
 			});
 
 			var svgGraph = d3.select("#graph").append("svg")
@@ -1088,7 +1088,7 @@
 				svgGraph.append("g")
 					.attr("class", "axis")
 					.attr("id", "xAxis")
-					.attr("transform", "translate(0,"+(heightGraph+titlePadding-paddingGraph)+")")
+					.attr("transform", "translate(0,"+(heightGraph+titlePadding+extraPadding-paddingGraph)+")")
 					.call(xAxis);
 				svgGraph.append("g")
 					.attr("class", "axis")
@@ -1096,17 +1096,38 @@
 					.attr("transform", "translate("+paddingGraph+",0)")
 					.call(yAxis);
 			}
+			graphAxis();
 
+			//appending graph titles and descriptions
 			var graphTitle = "Thigh Diameter vs Body Fat";
-
-
-			// svg.append("text")
-			//         .attr("x", (width / 2))             
-			//         .attr("y", 0 - (margin.top / 2))
-			//         .attr("text-anchor", "middle")  
-			//         .style("font-size", "16px") 
-			//         .style("text-decoration", "underline")  
-			//         .text("Value vs Date Graph");
+			var graphTitleX = "Diameter of Thigh (cm)";
+			var graphTitleY = "Percent Body Fat (%)";
+			var graphTitleFunct = function() {
+				svgGraph.append("text")
+						.attr("class", "titles")
+						.attr("id", "graphTitle")
+				        .attr("x", (widthGraph+paddingGraph)/ 2)             
+				        .attr("y", extraPadding+titlePadding*0.5)
+				        .attr("text-anchor", "middle")  
+				        .text(graphTitle);
+				svgGraph.append("text")
+						.attr("class", "titles")
+						.attr("id", "graphTitleX")
+				        .attr("x", (widthGraph+paddingGraph)/ 2)             
+				        .attr("y", extraPadding+heightGraph+titlePadding*0.7)
+				        .attr("text-anchor", "middle")  
+				        .text(graphTitleX);
+				svgGraph.append("text")
+						.attr("class", "titles")
+						.attr("id", "graphTitleY")
+				        .attr("x", paddingGraph/2)             
+				        .attr("y", extraPadding+(paddingGraph*0.7)+(heightGraph)*0.5)
+				        .attr("text-anchor", "middle")
+				        .attr("transform", "rotate(270 " + (paddingGraph/2) + "," + 
+				        	(extraPadding+(paddingGraph*0.7)+(heightGraph)*0.5) + ")")
+				        .text(graphTitleY);
+			}
+			graphTitleFunct();
 
 			}
 

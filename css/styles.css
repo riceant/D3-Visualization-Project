@@ -1,5 +1,9 @@
 svg {border: solid black 1px;}
 
+.graphSVG {
+	border: none;
+}
+
 .axis {
     fill: none;
     stroke: black;
@@ -9,9 +13,19 @@ svg {border: solid black 1px;}
 .axis text {
 	fill: black;
 	stroke: none;
-    font-family: sans-serif;
-    font-size: 11px;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 18px;
+    font-weight: bold;
 }
+
+.titles {
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.
+
 
 
 .canvas {
@@ -30,11 +44,8 @@ svg {border: solid black 1px;}
 .graphSVG {
 }
 
-.title {
-    text-align: center;
-    font-family: 'Shadows Into Light', 'cursive';
-    font-size: 50px;
-    font-weight: bold;
+#graphTitle {
+	font-size: 40px;
 }
 
 body {
