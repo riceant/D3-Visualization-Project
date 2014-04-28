@@ -1018,8 +1018,8 @@
 			var fitln = fitLine(xVar,yVar);
 			xVarminmaxX = minmax(xVar);
 			corrYwMinmax = [fitln(xVarminmaxX[0]),fitln(xVarminmaxX[1])];
-			return [{"x": xVarminmaxX[0],	"y": 100-corrYwMinmax[0]},
-					{"x": xVarminmaxX[1],	"y": 100-corrYwMinmax[1]}];
+			return [{"x": xVarminmaxX[0],	"y": heightGraph-corrYwMinmax[0]},
+					{"x": xVarminmaxX[1],	"y": heightGraph-corrYwMinmax[1]}];
 		}
 
 		function retAllPts(xVar,yVar){
@@ -1030,37 +1030,72 @@
 			data.forEach(function(element){
 				xVal = element[xVar];
 				yVal = element[yVar];
-				pointArr.push({"x": xVal, "y": 100-yVal});
+				pointArr.push({"x": dia(xVal), "y": yVal});
 			})
 			return pointArr;
 		}
 
+		var paddingGraph = 100;
+		var titlePadding = 100
+		var extraPadding = 20;
+		var heightGraph = 500;
+		var widthGraph = 500;
 		function plotGraph(xVar, yVar){
-			xScaleMinmax = minmax();
-			yScaleMinmax = minmax();
-			//var xScale = d3.scale.linear().domain([0,200]).range([25,175]);
-			//var yScale = d3.scale.linear().domain([0,300]).range([175,25]);
+			xScaleMinmax = minmax(xVar);
+			yScaleMinmax = minmax(yVar);
+			xScale = d3.scale.linear().domain([dia(xScaleMinmax[0])*0.9,dia(xScaleMinmax[1])*1.1]).range([paddingGraph,widthGraph]);
+			yScale = d3.scale.linear().domain([yScaleMinmax[0]*0.9,yScaleMinmax[1]*1.1]).range([heightGraph+titlePadding-paddingGraph,extraPadding+titlePadding]);
 
-			var svg = d3.select("#graph")
-				.append("svg")
-				.attr("height", 100)
-				.attr("width", 100);
+			var intFormat = d3.format("d");
+			var percentFormat = d3.format("%");
+			//axis
+			var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(function (d) {
+				return percentFormat(d/100);
+			});
+			var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(function (d) {
+				return intFormat(d) + "cm";
+			});
+
+			var svgGraph = d3.select("#graph").append("svg")
+				.attr("class", "graphSVG")
+				.attr("height", heightGraph+extraPadding+titlePadding)
+				.attr("width", widthGraph+extraPadding)
 			//get the data
 			var lineData = retAllPts(xVar,yVar);
 
 			var lineFunction = d3.svg.line()
-				.x(function(d) { return d.x; })
-				.y(function(d) { return d.y; })
+				.x(function(d) { 
+					//console.log(xScale(d.x));
+					return xScale(d.x); })
+				.y(function(d) { 
+					console.log(yScale(d.y));
+					return yScale(d.y); })
 				.interpolate("bundle").tension(.3);
 
 			//The line SVG Path we draw
-			var lineGraph = svg.append("path")
+			var lineGraph = svgGraph.append("path")
 				.attr("d", lineFunction(lineData))
 				.attr("stroke", "blue")
 				.attr("stroke-width", 1)
 				.attr("fill", "none");
-		}
+
+			//appending axis
+			svgGraph.append("g")
+				.attr("class", "xAxis")
+				.attr("id", "xAxis")
+				.attr("transform", "translate(0,"+(heightGraph+titlePadding-paddingGraph)+")")
+				.call(xAxis);
+			svgGraph.append("g")
+				.attr("class", "yAxis")
+				.attr("id", "yAxis")
+				.attr("transform", "translate("+paddingGraph+",0)")
+				.call(yAxis);
+
+			}
+
+
 		plotGraph('ThighC', 'PercentBodyFat');
+		console.log(minmax('ThighC'));
 		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
 		console.log(calcFitYThighC(27));
 		console.log(minmax('ThighC'));
