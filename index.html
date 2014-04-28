@@ -8,7 +8,7 @@
 <head>
 
 <body>
-<h1 class="title">Who Needs a Scale? </h1>
+<h1 class="titles">Who Needs a Scale? </h1>
 
 <!-- //////////////////////////////////////////////////////////////////////////
 	The following code creates the two human figures. To change values on the figures, 
@@ -64,7 +64,9 @@
 	</div>
 	
 	<div id="divCanvas" style="float:left"></div>
-	<div id="divCanvasShape" style="float=right"></div>
+	<div id="divCanvasShape" style="float=right">
+		
+	</div>
 
 	<script type="text/javascript">
 
@@ -974,8 +976,7 @@
 
 	</script>
 
-	<h1>Parsing Data</h1>
-	<div id="graph"></div>
+	
 	<script type="text/javascript">
 	/*
 	$.getJSON("data/BodyFat.json", function(json) {
@@ -1056,7 +1057,8 @@
 				return intFormat(d);
 			});
 
-			var svgGraph = d3.select("#graph").append("svg")
+			var svgGraph = d3.select("#divCanvasShape").append("svg")
+
 				.attr("class", "graphSVG")
 				.attr("height", heightGraph+extraPadding+titlePadding)
 				.attr("width", widthGraph+extraPadding)

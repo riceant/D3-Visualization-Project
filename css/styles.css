@@ -19,17 +19,16 @@ svg {border: solid black 1px;}
 }
 
 .titles {
+    text-align: center;
     font-family: 'Shadows Into Light', 'cursive';
     font-size: 30px;
     font-weight: bold;
 }
 
-.
-
-
 
 .canvas {
 	background-color: #b7b7b7;
+	float: left;
 }
 .body {
 	fill: white;
@@ -42,11 +41,12 @@ svg {border: solid black 1px;}
 }
 		
 .graphSVG {
-	float: right;
+	float: left;
 }
 
 #graphTitle {
 	font-size: 40px;
+	text-align: center;
 }
 
 body {
