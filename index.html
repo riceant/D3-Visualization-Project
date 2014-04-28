@@ -1084,25 +1084,38 @@
 				.attr("fill", "none");
 
 			//appending axis
-			svgGraph.append("g")
-				.attr("class", "xAxis")
-				.attr("id", "xAxis")
-				.attr("transform", "translate(0,"+(heightGraph+titlePadding-paddingGraph)+")")
-				.call(xAxis);
-			svgGraph.append("g")
-				.attr("class", "yAxis")
-				.attr("id", "yAxis")
-				.attr("transform", "translate("+paddingGraph+",0)")
-				.call(yAxis);
+			var graphAxis = function() {
+				svgGraph.append("g")
+					.attr("class", "axis")
+					.attr("id", "xAxis")
+					.attr("transform", "translate(0,"+(heightGraph+titlePadding-paddingGraph)+")")
+					.call(xAxis);
+				svgGraph.append("g")
+					.attr("class", "axis")
+					.attr("id", "yAxis")
+					.attr("transform", "translate("+paddingGraph+",0)")
+					.call(yAxis);
+			}
+
+			var graphTitle = "Thigh Diameter vs Body Fat";
+
+
+			// svg.append("text")
+			//         .attr("x", (width / 2))             
+			//         .attr("y", 0 - (margin.top / 2))
+			//         .attr("text-anchor", "middle")  
+			//         .style("font-size", "16px") 
+			//         .style("text-decoration", "underline")  
+			//         .text("Value vs Date Graph");
 
 			}
 
 
-		plotGraph('ThighCC', 'PercentBodyFat');
-		console.log(minmax('ThighCC'));
-		calcFitYThighCC = fitLine('ThighCC', 'PercentBodyFat');
+		plotGraph('ThighC', 'PercentBodyFat');
+		console.log(minmax('ThighC'));
+		calcFitYThighCC = fitLine('ThighC', 'PercentBodyFat');
 		console.log(calcFitYThighCC(27));
-		console.log(minmax('ThighCC'));
+		console.log(minmax('ThighC'));
 		console.log(data);
 	})
 

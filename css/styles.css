@@ -1,13 +1,14 @@
 svg {border: solid black 1px;}
 
-.axis path,
-.axis line {
+.axis {
     fill: none;
     stroke: black;
     shape-rendering: crispEdges;
 }
 
 .axis text {
+	fill: black;
+	stroke: none;
     font-family: sans-serif;
     font-size: 11px;
 }
