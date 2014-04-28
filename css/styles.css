@@ -1,3 +1,20 @@
+svg {border: solid black 1px;}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+
+
+
 .canvas {
 	background-color: #b7b7b7;
 }

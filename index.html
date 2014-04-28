@@ -916,22 +916,31 @@
 			return [minVal,maxVal];
 		}
 
-		function retLine(xVar,yVar){
+		function retLinePts(xVar,yVar){
 			var fitln = fitLine(xVar,yVar);
 			xVarminmaxX = minmax(xVar);
 			corrYwMinmax = [fitln(xVarminmaxX[0]),fitln(xVarminmaxX[1])];
-			return [{"x": xVarminmaxX[0],	"y": corrYwMinmax[0]},
-					{"x": xVarminmaxX[1],	"y": corrYwMinmax[1]}];
+			return [{"x": xVarminmaxX[0],	"y": 100-corrYwMinmax[0]},
+					{"x": xVarminmaxX[1],	"y": 100-corrYwMinmax[1]}];
+		}
+
+		function retAllPts(xVar,yVar){
+			pointArr = [];
+			data.forEach(function(element){
+				xVal = element[xVar];
+				yVal = element[yVar];
+				pointArr.push({"x": xVal, "y": yVal});
+			})
+			return pointArr;
 		}
 
 		function plotGraph(xVar, yVar){
 			var svg = d3.select("#graph")
 				.append("svg")
-				.attr("height", 200)
-				.attr("width", 200);
+				.attr("height", 100)
+				.attr("width", 100);
 			//get the data
-			var lineData = retLine(xVar,yVar);
-			console.log(lineData);
+			var lineData = retLinePts(xVar,yVar);
 
 			var lineFunction = d3.svg.line()
 				.x(function(d) { return d.x; })
