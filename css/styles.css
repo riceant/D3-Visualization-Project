@@ -25,7 +25,12 @@ svg {border: solid black 1px;}
     font-weight: bold;
 }
 
-
+.textmeasurements {
+	text-align: center;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 25px;
+    font-weight: bold;
+}
 .canvas {
 	background-color: #b7b7b7;
 	float: left;
