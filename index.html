@@ -105,6 +105,8 @@
 		var wrist = 18;
 		//additional
 		var armWidth = 0.05;
+		var finger = 0.2;
+		var feet = 1.3;
 
 		//convert measurement values to strings in cm
 		//takes in circumference in cm and putputs "30cm"
@@ -262,8 +264,22 @@
 			return  "M " + placeCenterL((1+armWidth)*chest+2*bicep) + " " + heightScale(division*prop.arm[0]) + " " +
 					"L " + placeCenterL((1+armWidth)*chest + bicep + forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
 					"L " + placeCenterL((1+armWidth)*chest + bicep + wrist) + " " + heightScale(division*prop.wrist[0]) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep - wrist) + " " +
-					"L " + placeCenterL((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterL((1+armWidth)*chest + bicep + wrist*1.25) + " " + heightScale(division*(prop.wrist[0]-finger)) + " " +
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*chest + bicep + 0.75*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*chest + bicep + 0.25*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*chest + bicep + (-0.25)*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*chest + bicep + (-0.75)*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-1.5*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*chest + bicep + (-1.25)*wrist) + " " + 
+					"L " + placeCenterL((1+armWidth)*chest + bicep - wrist) + " " + heightScale(division*prop.wrist[0]) + " " +					"L " + placeCenterL((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
 					"L " + placeCenterL((1+armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
 					"Z";
 		};
@@ -271,8 +287,22 @@
 			return  "M " + placeCenterR((1+armWidth)*chest+2*bicep) + " " + heightScale(division*prop.arm[0]) + " " +
 					"L " + placeCenterR((1+armWidth)*chest + bicep + forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
 					"L " + placeCenterR((1+armWidth)*chest + bicep + wrist) + " " + heightScale(division*prop.wrist[0]) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep - wrist) + " " +
-					"L " + placeCenterR((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*chest + bicep + wrist*1.25) + " " + heightScale(division*(prop.wrist[0]-finger)) + " " +
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*chest + bicep + 0.75*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*chest + bicep + 0.25*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*chest + bicep + (-0.25)*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*chest + bicep + (-0.75)*wrist) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.wrist[0]-1.5*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*chest + bicep + (-1.25)*wrist) + " " + 
+					"L " + placeCenterR((1+armWidth)*chest + bicep - wrist) + " " + heightScale(division*prop.wrist[0]) + " " +					"L " + placeCenterR((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
 					"L " + placeCenterR((1+armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
 					"Z";
 		};
@@ -293,6 +323,50 @@
 	 				"L " + placeCenterR(hip) + " " + heightScale(division*prop.hip[0]) + " " +
 	 				//BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
 	 				"Z";
+		};
+		var drawLeftShoe = function() {
+			return  "M " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+					"V " + heightScale(division*0.15) + " " +
+					"H " + placeLeft(0.5*thigh+(-0.2)*ankle) + " " +
+					"V " + heightScale(division*prop.feet[0]) + " " +
+					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.25) + " " +
+					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.20) + " " +
+					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.15) + " " +
+					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.15) + " " +
+					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.20) + " " +
+					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.25) + " " +
+					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.3) + " " +
+					"M " + placeLeft(0.5*thigh + 0.5*feet*ankle) + " " + heightScale(division*0.1) + " " +
+					"Q " + placeCenterL(thigh) + " " + heightScale(division*(-0.01)) + " " +
+						placeCenterL(thigh-1.15*ankle) + " " + heightScale(division*0.1) + " " + 					
+					"M " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+					BezierCirL(thigh+ankle, prop.feet[0], thigh+1.1*feet*ankle, 0.05) + " " +
+					"Q " + placeCenterL(thigh) + " " + heightScale(division*(-0.02)) + " " +
+						placeCenterL(thigh-feet*ankle) + " " + heightScale(division*0.05) + " " + 
+					BezierCirL(thigh-feet*ankle, 0.1, thigh-ankle, prop.feet[0]) + " " +
+					"Z"; 
+		};
+		var drawRightShoe = function() {
+			return  "M " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+					"V " + heightScale(division*0.15) + " " +
+					"H " + placeRight(0.5*thigh+(-0.2)*ankle) + " " +
+					"V " + heightScale(division*prop.feet[0]) + " " +
+					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.25) + " " +
+					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.20) + " " +
+					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.15) + " " +
+					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.15) + " " +
+					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.20) + " " +
+					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.25) + " " +
+					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.3) + " " +
+					"M " + placeRight(0.5*thigh + 0.5*feet*ankle) + " " + heightScale(division*0.1) + " " +
+					"Q " + placeCenterR(thigh) + " " + heightScale(division*(-0.01)) + " " +
+						placeCenterR(thigh-1.15*ankle) + " " + heightScale(division*0.1) + " " + 					
+					"M " + placeRight(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+					BezierCirR(thigh+ankle, prop.feet[0], thigh+1.1*feet*ankle, 0.05) + " " +
+					"Q " + placeCenterR(thigh) + " " + heightScale(division*(-0.02)) + " " +
+						placeCenterR(thigh-feet*ankle) + " " + heightScale(division*0.05) + " " + 
+					BezierCirR(thigh-feet*ankle, 0.1, thigh-ankle, prop.feet[0]) + " " +
+					"Z"; 
 		};
 
 		//addeding marker to SVG for measurement/arrow use
@@ -354,6 +428,18 @@
 	 		.attr("id", "lower")
 	 		.attr("d", drawLower())
 	 		.style("fill", "blue");
+	 	//append left shoe
+	 	var leftShoeSVG = svg.append("path")
+	 		.attr("class", "curvedBody")
+	 		.attr("id", "leftShoe")
+	 		.attr("d", drawLeftShoe())
+	 		.style("fill", "#660000");
+	 	//append Right shoe
+	 	var rightShoeSVG = svg.append("path")
+	 		.attr("class", "curvedBody")
+	 		.attr("id", "rightShoe")
+	 		.attr("d", drawRightShoe())
+	 		.style("fill", "#660000");
  		
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
@@ -797,16 +883,6 @@
 		};
 		shapeStyle();
 
-		// //height slider
-		// ///////////////////////////////////////////////////////////////////////
-		// document.getElementById("slider").onchange =
-		// 	function () {
-		// 		var setting = "0 0 400 " + document.getElementById("slider").value;
-		// 		document.getElementById("canvas").setAttribute("viewBox", setting);
-		// 		console.log(setting);
-		// 	};
-
-
  		//example of dynamic manipulation
  		document.getElementById("chestSlider").onchange = 
  			function() {
@@ -866,6 +942,10 @@
 				.attr("d", drawRightArm());
 			lowerSVG.transition()
 				.attr("d", drawLower());
+			leftShoe.transition()
+				.attr("d", drawLeftShoe());
+			rightShoe.transition()
+				.attr("d", drawRightShoe());
 			//updating box figure
 			d3.selectAll(".body").remove();
 			d3.selectAll(".measurements").remove();
