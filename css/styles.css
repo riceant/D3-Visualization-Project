@@ -13,8 +13,6 @@ svg {border: solid black 1px;}
 }
 
 
-
-
 .canvas {
 	background-color: #b7b7b7;
 }
@@ -29,4 +27,31 @@ svg {border: solid black 1px;}
 }
 		
 .graphSVG {
+}
+
+.title {
+    text-align: center;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 50px;
+    font-weight: bold;
+}
+
+body {
+    background-color: rgb(200, 247, 44);
+}
+
+#sliders {
+    float: left;
+}
+
+#slider {
+    
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.center {
+    text-align: center;
 }
