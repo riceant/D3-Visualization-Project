@@ -17,54 +17,54 @@
 	___________________________
 		var density = 1.05;
 		var percent =15;
-		var age = 30;
+		var Age = 30;
 		var weight = 160;
 		var height = 70;
-		var neck = 38;
-		var chest = 95;
-		var abs = 90;
-		var hip = 98
-		var thigh = 58;
-		var knee = 38;
-		var ankle = 23;
-		var bicep = 32;
-		var forearm = 28;
-		var wrist = 18;
+		var NeckC = 38;
+		var ChestC = 95;
+		var AbdomenC = 90;
+		var HipC = 98
+		var ThighC = 58;
+		var KneeC = 38;
+		var AnkleC = 23;
+		var BicepsC = 32;
+		var ForearmC = 28;
+		var WristC = 18;
 	__________________________
 	////////////////////////////////////////////////////////////////////// -->
 	<div class="center">Current Bodypart : <span id="bPart">BODYPART</span><br>Current Value: <span id="bValue">VALUE</span></div>
 	<div id="slider"><input class="fullwidth" type="range" min="0" max="100" value="50" id="globalSlider"></div>
 	
 	<div id="sliders">
-		Chest Slider
-		<input id="chestSlider" type="range" min="80" max="110" value="95"/><br>
+		ChestC Slider
+		<input id="ChestCSlider" type="range" min="80" max="110" value="95"/><br>
 
 		Abdomen Slider
-		<input id="absSlider" type="range" min="75" max="105" value="90"/><br>
+		<input id="AbdomenCSlider" type="range" min="75" max="105" value="90"/><br>
 
-		Hip Slider
-		<input id="hipSlider" type="range" min="83" max="113" value="98"/><br>
+		HipC Slider
+		<input id="HipCSlider" type="range" min="83" max="113" value="98"/><br>
 
-		Thigh Slider
-		<input id="thighSlider" type="range" min="48" max="68" value="58"/><br>
+		ThighC Slider
+		<input id="ThighCSlider" type="range" min="48" max="68" value="58"/><br>
 
-		Bicep Slider
-		<input id="bicepSlider" type="range" min="22" max="42" value="32"/><br>
+		BicepsC Slider
+		<input id="BicepsCSlider" type="range" min="22" max="42" value="32"/><br>
 
-		Neck Slider
-		<input id="neckSlider" type="range" min="28" max="48" value="38"/><br>
+		NeckC Slider
+		<input id="NeckCSlider" type="range" min="28" max="48" value="38"/><br>
 
 		Height Slider
 		<input id="heightSlider" type="range" min="50" max="90" value="70"/><br>
 
-		Knee Slider
-		<input id="kneeSlider" type="range" min="33" max="43" value="38"/><br>
+		KneeC Slider
+		<input id="KneeCSlider" type="range" min="33" max="43" value="38"/><br>
 
-		Wrist Slider
-		<input id="wristSlider" type="range" min="13" max="23" value="18"/><br>
+		WristC Slider
+		<input id="WristCSlider" type="range" min="13" max="23" value="18"/><br>
 
-		Ankle Slider
-		<input id="ankleSlider" type="range" min="18" max="28" value="23"/>	<br>	
+		AnkleC Slider
+		<input id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	<br>	
 	</div>
 	
 	<div id="divCanvas" style="float:left"></div>
@@ -102,19 +102,19 @@
 		// };
 		var density = 1.05;
 		var percent = 15;
-		var age = 30;
+		var Age = 30;
 		var weight = 160;
 		var height = 70;
-		var neck = 38;
-		var chest = 95;
-		var abs = 90;
-		var hip = 98
-		var thigh = 58;
-		var knee = 38;
-		var ankle = 23;
-		var bicep = 32;
-		var forearm = 28;
-		var wrist = 18;
+		var NeckC = 38;
+		var ChestC = 95;
+		var AbdomenC = 90;
+		var HipC = 98
+		var ThighC = 58;
+		var KneeC = 38;
+		var AnkleC = 23;
+		var BicepsC = 32;
+		var ForearmC = 28;
+		var WristC = 18;
 		//additional
 		var armWidth = 0.05;
 		var finger = 0.2;
@@ -133,32 +133,32 @@
 		// prop is used for the curved human
 		var prop = {
 			"head": [7.5, 0.5],
-			"neck": [7.15, 6.9],
-			"chest": [6.75, 6.15],
+			"NeckC": [7.15, 6.9],
+			"ChestC": [6.75, 6.15],
 			"arm": [6],
-			"abs": [5.25],
-			"hip": [4.1],
-			"thigh": [3.4],
+			"AbdomenC": [5.25],
+			"HipC": [4.1],
+			"ThighC": [3.4],
 			"feet": [0.3],
-			"knee": [2],
-			"bicep": [6.8, 1.8],
-			"forearm": [5, 1],
-			"wrist": [4, .1]
+			"KneeC": [2],
+			"BicepsC": [6.8, 1.8],
+			"ForearmC": [5, 1],
+			"WristC": [4, .1]
 		};
 		// sprop is used for the shape drawn human
 		var sprop = {
 			"head": [7.5, 0.5],
-			"neck": [7.15, 0.4],
-			"chest": [6.75, 1],
-			"abs": [5.75, 1],
-			"hip": [4.75, 1],
-			"thigh": [4, 1.95],
+			"NeckC": [7.15, 0.4],
+			"ChestC": [6.75, 1],
+			"AbdomenC": [5.75, 1],
+			"HipC": [4.75, 1],
+			"ThighC": [4, 1.95],
 			"calf": [1.95, 1.65],
 			"feet": [0.3, 0.3],
-			"knee": [2],
-			"bicep": [6.8, 1.8],
-			"forearm": [5, 1],
-			"wrist": [4, .1]
+			"KneeC": [2],
+			"BicepsC": [6.8, 1.8],
+			"ForearmC": [5, 1],
+			"WristC": [4, .1]
 		};
 
 
@@ -245,139 +245,139 @@
 
 		//drawing human figure with SVG path
 		///////////////////////////////////////////////////////////////////////
-		var drawNeck = function() {
-			return 	"M " + placeCenterL(neck) + " " + heightScale(division*prop.neck[0]) + " " +
-					"V " + heightScale(division*prop.chest[0]) + " " +
-					"Q " + center + " " + heightScale(division*(prop.chest[0]-0.3)) + " " + 
-						placeCenterR(neck) + " " + heightScale(division*prop.chest[0]) + " " + 
-					"V " + heightScale(division*(prop.neck[0])) + " " +
+		var drawNeckC = function() {
+			return 	"M " + placeCenterL(NeckC) + " " + heightScale(division*prop.NeckC[0]) + " " +
+					"V " + heightScale(division*prop.ChestC[0]) + " " +
+					"Q " + center + " " + heightScale(division*(prop.ChestC[0]-0.3)) + " " + 
+						placeCenterR(NeckC) + " " + heightScale(division*prop.ChestC[0]) + " " + 
+					"V " + heightScale(division*(prop.NeckC[0])) + " " +
 					"Z";
 		};
 		var drawUpper = function() {
-			return	"M " + placeCenterR(neck) + " " + heightScale(division*prop.chest[0]) + " " +
-					"Q " + center + " " + heightScale(division*(prop.chest[0]-0.3)) + " " +
-						placeCenterL(neck) + " " + heightScale(division*(prop.chest[0])) + " " + 
-					"Q " + placeCenterL((1+armWidth)*chest+1.5*bicep) + " " + heightScale(division*prop.chest[0]) + " " +
-						placeCenterL((1+armWidth)*chest+2*bicep) + " " + heightScale(division*prop.arm[0]) + " " +
-					"H " + placeCenterL((1+armWidth)*chest) + " " +
-					"L " + placeCenterL(chest) + " " + heightScale(division*prop.chest[1]) + " " +
-					BezierCirL(chest, prop.chest[1], abs, prop.abs[0]) + " " +
-					BezierCirL(abs, prop.abs[0], hip, prop.hip[0]) + " " +
-					"H " + placeCenterR(hip) + " " +
-					BezierCirR(hip, prop.hip[0], abs, prop.abs[0]) + " " +
-					BezierCirR(abs, prop.abs[0], chest, prop.chest[1]) + " " +
-					"L " + placeCenterR((1+armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + 2*bicep) + " " +
-					"Q " + placeCenterR((1 + armWidth)*chest + 1.5*bicep) + " " + heightScale(division*prop.chest[0]) + " " +
-						placeCenterR(neck) + " " + heightScale(division*(prop.chest[0])) + " " +
+			return	"M " + placeCenterR(NeckC) + " " + heightScale(division*prop.ChestC[0]) + " " +
+					"Q " + center + " " + heightScale(division*(prop.ChestC[0]-0.3)) + " " +
+						placeCenterL(NeckC) + " " + heightScale(division*(prop.ChestC[0])) + " " + 
+					"Q " + placeCenterL((1+armWidth)*ChestC+1.5*BicepsC) + " " + heightScale(division*prop.ChestC[0]) + " " +
+						placeCenterL((1+armWidth)*ChestC+2*BicepsC) + " " + heightScale(division*prop.arm[0]) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC) + " " +
+					"L " + placeCenterL(ChestC) + " " + heightScale(division*prop.ChestC[1]) + " " +
+					BezierCirL(ChestC, prop.ChestC[1], AbdomenC, prop.AbdomenC[0]) + " " +
+					BezierCirL(AbdomenC, prop.AbdomenC[0], HipC, prop.HipC[0]) + " " +
+					"H " + placeCenterR(HipC) + " " +
+					BezierCirR(HipC, prop.HipC[0], AbdomenC, prop.AbdomenC[0]) + " " +
+					BezierCirR(AbdomenC, prop.AbdomenC[0], ChestC, prop.ChestC[1]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC) + " " + heightScale(division*prop.arm[0]) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + 2*BicepsC) + " " +
+					"Q " + placeCenterR((1 + armWidth)*ChestC + 1.5*BicepsC) + " " + heightScale(division*prop.ChestC[0]) + " " +
+						placeCenterR(NeckC) + " " + heightScale(division*(prop.ChestC[0])) + " " +
 					"Z";
 		};
 		var drawLeftArm = function() {
-			return  "M " + placeCenterL((1+armWidth)*chest+2*bicep) + " " + heightScale(division*prop.arm[0]) + " " +
-					"L " + placeCenterL((1+armWidth)*chest + bicep + forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
-					"L " + placeCenterL((1+armWidth)*chest + bicep + wrist) + " " + heightScale(division*prop.wrist[0]) + " " +
-					"L " + placeCenterL((1+armWidth)*chest + bicep + wrist*1.25) + " " + heightScale(division*(prop.wrist[0]-finger)) + " " +
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep + 0.75*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep + 0.25*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep + (-0.25)*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep + (-0.75)*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-1.5*finger)) + " " +
-					"H " + placeCenterL((1+armWidth)*chest + bicep + (-1.25)*wrist) + " " + 
-					"L " + placeCenterL((1+armWidth)*chest + bicep - wrist) + " " + heightScale(division*prop.wrist[0]) + " " +					"L " + placeCenterL((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
-					"L " + placeCenterL((1+armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+			return  "M " + placeCenterL((1+armWidth)*ChestC+2*BicepsC) + " " + heightScale(division*prop.arm[0]) + " " +
+					"L " + placeCenterL((1+armWidth)*ChestC + BicepsC + ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
+					"L " + placeCenterL((1+armWidth)*ChestC + BicepsC + WristC) + " " + heightScale(division*prop.WristC[0]) + " " +
+					"L " + placeCenterL((1+armWidth)*ChestC + BicepsC + WristC*1.25) + " " + heightScale(division*(prop.WristC[0]-finger)) + " " +
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC + BicepsC + 0.75*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC + BicepsC + 0.25*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC + BicepsC + (-0.25)*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC + BicepsC + (-0.75)*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-1.5*finger)) + " " +
+					"H " + placeCenterL((1+armWidth)*ChestC + BicepsC + (-1.25)*WristC) + " " + 
+					"L " + placeCenterL((1+armWidth)*ChestC + BicepsC - WristC) + " " + heightScale(division*prop.WristC[0]) + " " +					"L " + placeCenterL((1+armWidth)*ChestC + BicepsC - ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
+					"L " + placeCenterL((1+armWidth)*ChestC) + " " + heightScale(division*prop.arm[0]) + " " +
 					"Z";
 		};
 		var drawRightArm = function() {
-			return  "M " + placeCenterR((1+armWidth)*chest+2*bicep) + " " + heightScale(division*prop.arm[0]) + " " +
-					"L " + placeCenterR((1+armWidth)*chest + bicep + forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
-					"L " + placeCenterR((1+armWidth)*chest + bicep + wrist) + " " + heightScale(division*prop.wrist[0]) + " " +
-					"L " + placeCenterR((1+armWidth)*chest + bicep + wrist*1.25) + " " + heightScale(division*(prop.wrist[0]-finger)) + " " +
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep + 0.75*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep + 0.25*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep + (-0.25)*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-2*finger)) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep + (-0.75)*wrist) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-finger)) + " " + 
-					"V " + heightScale(division*(prop.wrist[0]-1.5*finger)) + " " +
-					"H " + placeCenterR((1+armWidth)*chest + bicep + (-1.25)*wrist) + " " + 
-					"L " + placeCenterR((1+armWidth)*chest + bicep - wrist) + " " + heightScale(division*prop.wrist[0]) + " " +					"L " + placeCenterR((1+armWidth)*chest + bicep - forearm) + " " + heightScale(division*prop.forearm[0]) + " " +
-					"L " + placeCenterR((1+armWidth)*chest) + " " + heightScale(division*prop.arm[0]) + " " +
+			return  "M " + placeCenterR((1+armWidth)*ChestC+2*BicepsC) + " " + heightScale(division*prop.arm[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC + ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC + WristC) + " " + heightScale(division*prop.WristC[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC + WristC*1.25) + " " + heightScale(division*(prop.WristC[0]-finger)) + " " +
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + 0.75*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + 0.25*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + (-0.25)*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-2*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + (-0.75)*WristC) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
+					"V " + heightScale(division*(prop.WristC[0]-1.5*finger)) + " " +
+					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + (-1.25)*WristC) + " " + 
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - WristC) + " " + heightScale(division*prop.WristC[0]) + " " +					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC) + " " + heightScale(division*prop.arm[0]) + " " +
 					"Z";
 		};
 		var drawLower = function() {
-	 		return	"M " + placeCenterL(hip) + " " +heightScale(division*prop.hip[0]) + " " +
-	 				"L " + placeLeft(thigh) + " " + heightScale(division*prop.thigh[0]) + " " +
-	 				//BezierCirL(hip, prop.hip[0], 2*thigh, prop.thigh[0]) + " " +
-	 				BezierCirLL(thigh, prop.thigh[0], (0.5*(thigh-knee)+knee), prop.knee[0]) + " " + 
-	 				"L " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
-	 				"H " + placeLeft(0.5*thigh-0.5*ankle) + " " +
-	 				BezierCirLL(0.5*thigh-0.5*ankle, prop.feet[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " + 
-	 				BezierCirLL(0.5*thigh-0.5*knee, prop.knee[0], 0, prop.thigh[0]) + " " +
-	 				BezierCirRR(0, prop.thigh[0], 0.5*thigh-0.5*knee, prop.knee[0]) + " " +
-	 				BezierCirRR(0.5*thigh-0.5*knee, prop.knee[0], 0.5*thigh-0.5*ankle, prop.feet[0]) + " " +
-	 				"H " + placeRight(0.5*thigh+0.5*ankle) + " " +
-	 				"L " + placeRight(0.5*thigh+0.5*knee) + " " + heightScale(division*prop.knee[0]) + " " +
-	 				BezierCirRR((0.5*(thigh-knee)+knee), prop.knee[0], thigh, prop.thigh[0]) + " " +
-	 				"L " + placeCenterR(hip) + " " + heightScale(division*prop.hip[0]) + " " +
-	 				//BezierCirR(2*thigh, prop.thigh[0], hip, prop.hip[0]) + " " +
+	 		return	"M " + placeCenterL(HipC) + " " +heightScale(division*prop.HipC[0]) + " " +
+	 				"L " + placeLeft(ThighC) + " " + heightScale(division*prop.ThighC[0]) + " " +
+	 				//BezierCirL(HipC, prop.HipC[0], 2*ThighC, prop.ThighC[0]) + " " +
+	 				BezierCirLL(ThighC, prop.ThighC[0], (0.5*(ThighC-KneeC)+KneeC), prop.KneeC[0]) + " " + 
+	 				"L " + placeLeft(0.5*ThighC+0.5*AnkleC) + " " + heightScale(division*prop.feet[0]) + " " +
+	 				"H " + placeLeft(0.5*ThighC-0.5*AnkleC) + " " +
+	 				BezierCirLL(0.5*ThighC-0.5*AnkleC, prop.feet[0], 0.5*ThighC-0.5*KneeC, prop.KneeC[0]) + " " + 
+	 				BezierCirLL(0.5*ThighC-0.5*KneeC, prop.KneeC[0], 0, prop.ThighC[0]) + " " +
+	 				BezierCirRR(0, prop.ThighC[0], 0.5*ThighC-0.5*KneeC, prop.KneeC[0]) + " " +
+	 				BezierCirRR(0.5*ThighC-0.5*KneeC, prop.KneeC[0], 0.5*ThighC-0.5*AnkleC, prop.feet[0]) + " " +
+	 				"H " + placeRight(0.5*ThighC+0.5*AnkleC) + " " +
+	 				"L " + placeRight(0.5*ThighC+0.5*KneeC) + " " + heightScale(division*prop.KneeC[0]) + " " +
+	 				BezierCirRR((0.5*(ThighC-KneeC)+KneeC), prop.KneeC[0], ThighC, prop.ThighC[0]) + " " +
+	 				"L " + placeCenterR(HipC) + " " + heightScale(division*prop.HipC[0]) + " " +
+	 				//BezierCirR(2*ThighC, prop.ThighC[0], HipC, prop.HipC[0]) + " " +
 	 				"Z";
 		};
 		var drawLeftShoe = function() {
-			return  "M " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+			return  "M " + placeLeft(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*prop.feet[0]) + " " +
 					"V " + heightScale(division*0.15) + " " +
-					"H " + placeLeft(0.5*thigh+(-0.2)*ankle) + " " +
+					"H " + placeLeft(0.5*ThighC+(-0.2)*AnkleC) + " " +
 					"V " + heightScale(division*prop.feet[0]) + " " +
-					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.25) + " " +
-					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.20) + " " +
-					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.15) + " " +
-					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.15) + " " +
-					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.20) + " " +
-					"L " + placeLeft(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.25) + " " +
-					"L " + placeLeft(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.3) + " " +
-					"M " + placeLeft(0.5*thigh + 0.5*feet*ankle) + " " + heightScale(division*0.1) + " " +
-					"Q " + placeCenterL(thigh) + " " + heightScale(division*(-0.01)) + " " +
-						placeCenterL(thigh-1.15*ankle) + " " + heightScale(division*0.1) + " " + 					
-					"M " + placeLeft(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
-					BezierCirL(thigh+ankle, prop.feet[0], thigh+1.1*feet*ankle, 0.05) + " " +
-					"Q " + placeCenterL(thigh) + " " + heightScale(division*(-0.02)) + " " +
-						placeCenterL(thigh-feet*ankle) + " " + heightScale(division*0.05) + " " + 
-					BezierCirL(thigh-feet*ankle, 0.1, thigh-ankle, prop.feet[0]) + " " +
+					"L " + placeLeft(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.25) + " " +
+					"L " + placeLeft(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.20) + " " +
+					"L " + placeLeft(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.15) + " " +
+					"L " + placeLeft(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.15) + " " +
+					"L " + placeLeft(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.20) + " " +
+					"L " + placeLeft(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.25) + " " +
+					"L " + placeLeft(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.3) + " " +
+					"M " + placeLeft(0.5*ThighC + 0.5*feet*AnkleC) + " " + heightScale(division*0.1) + " " +
+					"Q " + placeCenterL(ThighC) + " " + heightScale(division*(-0.01)) + " " +
+						placeCenterL(ThighC-1.15*AnkleC) + " " + heightScale(division*0.1) + " " + 					
+					"M " + placeLeft(0.5*ThighC+0.5*AnkleC) + " " + heightScale(division*prop.feet[0]) + " " +
+					BezierCirL(ThighC+AnkleC, prop.feet[0], ThighC+1.1*feet*AnkleC, 0.05) + " " +
+					"Q " + placeCenterL(ThighC) + " " + heightScale(division*(-0.02)) + " " +
+						placeCenterL(ThighC-feet*AnkleC) + " " + heightScale(division*0.05) + " " + 
+					BezierCirL(ThighC-feet*AnkleC, 0.1, ThighC-AnkleC, prop.feet[0]) + " " +
 					"Z"; 
 		};
 		var drawRightShoe = function() {
-			return  "M " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
+			return  "M " + placeRight(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*prop.feet[0]) + " " +
 					"V " + heightScale(division*0.15) + " " +
-					"H " + placeRight(0.5*thigh+(-0.2)*ankle) + " " +
+					"H " + placeRight(0.5*ThighC+(-0.2)*AnkleC) + " " +
 					"V " + heightScale(division*prop.feet[0]) + " " +
-					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.25) + " " +
-					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.20) + " " +
-					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.15) + " " +
-					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.15) + " " +
-					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.20) + " " +
-					"L " + placeRight(0.5*thigh-0.2*ankle) + " " + heightScale(division*0.25) + " " +
-					"L " + placeRight(0.5*thigh+0.2*ankle) + " " + heightScale(division*0.3) + " " +
-					"M " + placeRight(0.5*thigh + 0.5*feet*ankle) + " " + heightScale(division*0.1) + " " +
-					"Q " + placeCenterR(thigh) + " " + heightScale(division*(-0.01)) + " " +
-						placeCenterR(thigh-1.15*ankle) + " " + heightScale(division*0.1) + " " + 					
-					"M " + placeRight(0.5*thigh+0.5*ankle) + " " + heightScale(division*prop.feet[0]) + " " +
-					BezierCirR(thigh+ankle, prop.feet[0], thigh+1.1*feet*ankle, 0.05) + " " +
-					"Q " + placeCenterR(thigh) + " " + heightScale(division*(-0.02)) + " " +
-						placeCenterR(thigh-feet*ankle) + " " + heightScale(division*0.05) + " " + 
-					BezierCirR(thigh-feet*ankle, 0.1, thigh-ankle, prop.feet[0]) + " " +
+					"L " + placeRight(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.25) + " " +
+					"L " + placeRight(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.20) + " " +
+					"L " + placeRight(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.15) + " " +
+					"L " + placeRight(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.15) + " " +
+					"L " + placeRight(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.20) + " " +
+					"L " + placeRight(0.5*ThighC-0.2*AnkleC) + " " + heightScale(division*0.25) + " " +
+					"L " + placeRight(0.5*ThighC+0.2*AnkleC) + " " + heightScale(division*0.3) + " " +
+					"M " + placeRight(0.5*ThighC + 0.5*feet*AnkleC) + " " + heightScale(division*0.1) + " " +
+					"Q " + placeCenterR(ThighC) + " " + heightScale(division*(-0.01)) + " " +
+						placeCenterR(ThighC-1.15*AnkleC) + " " + heightScale(division*0.1) + " " + 					
+					"M " + placeRight(0.5*ThighC+0.5*AnkleC) + " " + heightScale(division*prop.feet[0]) + " " +
+					BezierCirR(ThighC+AnkleC, prop.feet[0], ThighC+1.1*feet*AnkleC, 0.05) + " " +
+					"Q " + placeCenterR(ThighC) + " " + heightScale(division*(-0.02)) + " " +
+						placeCenterR(ThighC-feet*AnkleC) + " " + heightScale(division*0.05) + " " + 
+					BezierCirR(ThighC-feet*AnkleC, 0.1, ThighC-AnkleC, prop.feet[0]) + " " +
 					"Z"; 
 		};
 
@@ -410,11 +410,11 @@
 		var arrowWidth = 10;
 
 		//appending paths and arrows and measurements to SVG
-		//appending neck
-		var neckSVG = svg.append("path")
+		//appending NeckC
+		var NeckCSVG = svg.append("path")
 			.attr("class", "curvedBody")
-			.attr("id", "neck")
-			.attr("d", drawNeck())
+			.attr("id", "NeckC")
+			.attr("d", drawNeckC())
 			.style("fill", "#FFCC66");
 		//appending upper body
 		var upperSVG = svg.append("path")
@@ -456,21 +456,21 @@
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
 		var shapeUpdate = function() {
-			//neck
+			//NeckC
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "neck")
-				.attr("x", placeCenterL(neck))
-				.attr("y", heightScale(division*sprop.neck[0]))
-				.attr("width", pixelWidth(neck))
-				.attr("height", scale(division*sprop.neck[1]));
-			//measure neck
+				.attr("id", "NeckC")
+				.attr("x", placeCenterL(NeckC))
+				.attr("y", heightScale(division*sprop.NeckC[0]))
+				.attr("width", pixelWidth(NeckC))
+				.attr("height", scale(division*sprop.NeckC[1]));
+			//measure NeckC
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(neck))
-				.attr("x2", placeCenterL(neck)+arrowWidth)
-				.attr("y1", heightScale(division*prop.neck[1]))
-				.attr("y2", heightScale(division*prop.neck[1]))
+				.attr("x1", placeCenterR(NeckC))
+				.attr("x2", placeCenterL(NeckC)+arrowWidth)
+				.attr("y1", heightScale(division*prop.NeckC[1]))
+				.attr("y2", heightScale(division*prop.NeckC[1]))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -478,9 +478,9 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeRight(neck+1))
-				.attr("y", heightScale(division*(sprop.neck[0]-0.7*sprop.neck[1])))
-				.text(outputText(neck));
+				.attr("x", placeRight(NeckC+1))
+				.attr("y", heightScale(division*(sprop.NeckC[0]-0.7*sprop.NeckC[1])))
+				.text(outputText(NeckC));
 			//head
 			svgShape.append("ellipse")
 				.attr("class", "body")
@@ -489,21 +489,21 @@
 				.attr("cy", heightScale(division*sprop.head[0]))
 				.attr("rx", scale(division*(.7)*.5))
 				.attr("ry", scale(division*sprop.head[1]));
-			//chest
+			//ChestC
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "chest")
-				.attr("x", placeCenterL(chest))
-				.attr("y", heightScale(division*sprop.chest[0]))
-				.attr("width", pixelWidth(chest))
-				.attr("height", scale(division*sprop.chest[1]));
-			//chest measurements
+				.attr("id", "ChestC")
+				.attr("x", placeCenterL(ChestC))
+				.attr("y", heightScale(division*sprop.ChestC[0]))
+				.attr("width", pixelWidth(ChestC))
+				.attr("height", scale(division*sprop.ChestC[1]));
+			//ChestC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(chest))
-				.attr("x2", placeCenterL(chest)+arrowWidth)
-				.attr("y1", heightScale(division*prop.chest[1]))
-				.attr("y2", heightScale(division*prop.chest[1]))
+				.attr("x1", placeCenterR(ChestC))
+				.attr("x2", placeCenterL(ChestC)+arrowWidth)
+				.attr("y1", heightScale(division*prop.ChestC[1]))
+				.attr("y2", heightScale(division*prop.ChestC[1]))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -512,23 +512,23 @@
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
 				.attr("x", center)
-				.attr("y", heightScale(division*(sprop.chest[0]-0.5*sprop.chest[1])))
-				.text(outputText(chest));
+				.attr("y", heightScale(division*(sprop.ChestC[0]-0.5*sprop.ChestC[1])))
+				.text(outputText(ChestC));
 			//abdomen
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "chest")
-				.attr("x", placeCenterL(abs))
-				.attr("y", heightScale(division*sprop.abs[0]))
-				.attr("width", pixelWidth(abs))
-				.attr("height", scale(division*sprop.abs[1]));
+				.attr("id", "ChestC")
+				.attr("x", placeCenterL(AbdomenC))
+				.attr("y", heightScale(division*sprop.AbdomenC[0]))
+				.attr("width", pixelWidth(AbdomenC))
+				.attr("height", scale(division*sprop.AbdomenC[1]));
 			//measure abdomen
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(abs))
-				.attr("x2", placeCenterL(abs)+arrowWidth)
-				.attr("y1", heightScale(division*prop.abs[0]))
-				.attr("y2", heightScale(division*prop.abs[0]))
+				.attr("x1", placeCenterR(AbdomenC))
+				.attr("x2", placeCenterL(AbdomenC)+arrowWidth)
+				.attr("y1", heightScale(division*prop.AbdomenC[0]))
+				.attr("y2", heightScale(division*prop.AbdomenC[0]))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -537,23 +537,23 @@
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
 				.attr("x", center)
-				.attr("y", heightScale(division*(sprop.abs[0]-0.45*sprop.abs[1])))
-				.text(outputText(abs));
-			//hip
+				.attr("y", heightScale(division*(sprop.AbdomenC[0]-0.45*sprop.AbdomenC[1])))
+				.text(outputText(AbdomenC));
+			//HipC
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "hip")
-				.attr("x", placeCenterL(hip))
-				.attr("y", heightScale(division*sprop.hip[0]))
-				.attr("width", pixelWidth(hip))
-				.attr("height", scale(division*sprop.hip[1]));
-			//measure hip
+				.attr("id", "HipC")
+				.attr("x", placeCenterL(HipC))
+				.attr("y", heightScale(division*sprop.HipC[0]))
+				.attr("width", pixelWidth(HipC))
+				.attr("height", scale(division*sprop.HipC[1]));
+			//measure HipC
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(hip))
-				.attr("x2", placeCenterL(hip)+arrowWidth)
-				.attr("y1", heightScale(division*prop.hip[0]))
-				.attr("y2", heightScale(division*prop.hip[0]))
+				.attr("x1", placeCenterR(HipC))
+				.attr("x2", placeCenterL(HipC)+arrowWidth)
+				.attr("y1", heightScale(division*prop.HipC[0]))
+				.attr("y2", heightScale(division*prop.HipC[0]))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -562,90 +562,41 @@
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
 				.attr("x", center)
-				.attr("y", heightScale(division*(sprop.hip[0]-0.6*sprop.hip[1])))
-				.text(outputText(hip));
-			//bicep left
+				.attr("y", heightScale(division*(sprop.HipC[0]-0.6*sprop.HipC[1])))
+				.text(outputText(HipC));
+			//BicepsC left
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "bicep")
-				.attr("x", placeCenterL(chest+2*bicep))
-				.attr("y", heightScale(division*sprop.bicep[0]))
-				.attr("width", pixelWidth(bicep))
-				.attr("height", scale(division*sprop.bicep[1]));
-			//bicep right
+				.attr("id", "BicepsC")
+				.attr("x", placeCenterL(ChestC+2*BicepsC))
+				.attr("y", heightScale(division*sprop.BicepsC[0]))
+				.attr("width", pixelWidth(BicepsC))
+				.attr("height", scale(division*sprop.BicepsC[1]));
+			//BicepsC right
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "bicep")
-				.attr("x", placeCenterR(chest))
-				.attr("y", heightScale(division*sprop.bicep[0]))
-				.attr("width", pixelWidth(bicep))
-				.attr("height", scale(division*sprop.bicep[1]));
-			//bicept measurements
+				.attr("id", "BicepsC")
+				.attr("x", placeCenterR(ChestC))
+				.attr("y", heightScale(division*sprop.BicepsC[0]))
+				.attr("width", pixelWidth(BicepsC))
+				.attr("height", scale(division*sprop.BicepsC[1]));
+			//BicepsCt measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterL(chest))
-				.attr("x2", placeLeft(bicep+0.5*chest)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
-				.attr("y2", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
+				.attr("x1", placeCenterL(ChestC))
+				.attr("x2", placeLeft(BicepsC+0.5*ChestC)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
+				.attr("y2", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(chest))
-				.attr("x2", placeRight(bicep+0.5*chest)-arrowWidth)
-				.attr("y1", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
-				.attr("y2", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
-				.style("stroke", "black")
-				.attr("stroke-width", "2")
-				.attr("marker-start", "url(\#begin)")
-				.attr("marker-end", "url(\#end)");
-			svgShape.append("text")
-				.attr("class", "textMeasurements")
-				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(chest+bicep)-textWidth)
-				.attr("y", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
-				.text(outputText(bicep));
-			svgShape.append("text")
-				.attr("class", "textMeasurements")
-				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(chest+bicep)+textWidth)
-				.attr("y", heightScale(division*(sprop.bicep[0]-0.5*sprop.bicep[1])))
-				.text(outputText(bicep));
-			//forearm left
-			svgShape.append("rect")
-				.attr("class", "body")
-				.attr("id", "forearm")
-				.attr("x", placeCenterL(chest+bicep+forearm))
-				.attr("y", heightScale(division*sprop.forearm[0]))
-				.attr("width", pixelWidth(forearm))
-				.attr("height", scale(division*sprop.forearm[1]));
-			//forearm right
-			svgShape.append("rect")
-				.attr("class", "body")
-				.attr("id", "forearm")
-				.attr("x", placeRight(chest*.5 + .5*(bicep-forearm)))
-				.attr("y", heightScale(division*sprop.forearm[0]))
-				.attr("width", pixelWidth(forearm))
-				.attr("height", scale(division*sprop.forearm[1]));
-			//forearm measurements
-			svgShape.append("line")
-				.attr("class", "measurements")
-				.attr("x1", placeCenterL(chest+bicep+forearm))
-				.attr("x2", placeCenterL(chest+bicep-forearm)-arrowWidth)
-				.attr("y1", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
-				.attr("y2", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
-				.style("stroke", "black")
-				.attr("stroke-width", "2")
-				.attr("marker-start", "url(\#begin)")
-				.attr("marker-end", "url(\#end)");
-			svgShape.append("line")
-				.attr("class", "measurements")
-				.attr("x1", placeCenterR(chest+bicep+forearm))
-				.attr("x2", placeCenterR(chest+bicep-forearm)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
-				.attr("y2", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
+				.attr("x1", placeCenterR(ChestC))
+				.attr("x2", placeRight(BicepsC+0.5*ChestC)-arrowWidth)
+				.attr("y1", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
+				.attr("y2", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -653,48 +604,97 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(chest+bicep)-textWidth)
-				.attr("y", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
-				.text(outputText(forearm));
+				.attr("x", placeCenterL(ChestC+BicepsC)-textWidth)
+				.attr("y", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
+				.text(outputText(BicepsC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(chest+bicep)+textWidth)
-				.attr("y", heightScale(division*(sprop.forearm[0]-0.5*sprop.forearm[1])))
-				.text(outputText(forearm));
-			//thigh left
+				.attr("x", placeCenterR(ChestC+BicepsC)+textWidth)
+				.attr("y", heightScale(division*(sprop.BicepsC[0]-0.5*sprop.BicepsC[1])))
+				.text(outputText(BicepsC));
+			//ForearmC left
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "thigh")
-				.attr("x", placeLeft(thigh))
-				.attr("y", heightScale(division*sprop.thigh[0]))
-				.attr("width", pixelWidth(thigh))
-				.attr("height", scale(division*sprop.thigh[1]));
-			//thigh right
+				.attr("id", "ForearmC")
+				.attr("x", placeCenterL(ChestC+BicepsC+ForearmC))
+				.attr("y", heightScale(division*sprop.ForearmC[0]))
+				.attr("width", pixelWidth(ForearmC))
+				.attr("height", scale(division*sprop.ForearmC[1]));
+			//ForearmC right
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "thigh")
+				.attr("id", "ForearmC")
+				.attr("x", placeRight(ChestC*.5 + .5*(BicepsC-ForearmC)))
+				.attr("y", heightScale(division*sprop.ForearmC[0]))
+				.attr("width", pixelWidth(ForearmC))
+				.attr("height", scale(division*sprop.ForearmC[1]));
+			//ForearmC measurements
+			svgShape.append("line")
+				.attr("class", "measurements")
+				.attr("x1", placeCenterL(ChestC+BicepsC+ForearmC))
+				.attr("x2", placeCenterL(ChestC+BicepsC-ForearmC)-arrowWidth)
+				.attr("y1", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.attr("y2", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.style("stroke", "black")
+				.attr("stroke-width", "2")
+				.attr("marker-start", "url(\#begin)")
+				.attr("marker-end", "url(\#end)");
+			svgShape.append("line")
+				.attr("class", "measurements")
+				.attr("x1", placeCenterR(ChestC+BicepsC+ForearmC))
+				.attr("x2", placeCenterR(ChestC+BicepsC-ForearmC)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.attr("y2", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.style("stroke", "black")
+				.attr("stroke-width", "2")
+				.attr("marker-start", "url(\#begin)")
+				.attr("marker-end", "url(\#end)");
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterL(ChestC+BicepsC)-textWidth)
+				.attr("y", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.text(outputText(ForearmC));
+			svgShape.append("text")
+				.attr("class", "textMeasurements")
+				.attr("text-anchor", "middle")
+				.attr("x", placeCenterR(ChestC+BicepsC)+textWidth)
+				.attr("y", heightScale(division*(sprop.ForearmC[0]-0.5*sprop.ForearmC[1])))
+				.text(outputText(ForearmC));
+			//ThighC left
+			svgShape.append("rect")
+				.attr("class", "body")
+				.attr("id", "ThighC")
+				.attr("x", placeLeft(ThighC))
+				.attr("y", heightScale(division*sprop.ThighC[0]))
+				.attr("width", pixelWidth(ThighC))
+				.attr("height", scale(division*sprop.ThighC[1]));
+			//ThighC right
+			svgShape.append("rect")
+				.attr("class", "body")
+				.attr("id", "ThighC")
 				.attr("x", center)
-				.attr("y", heightScale(division*sprop.thigh[0]))
-				.attr("width", pixelWidth(thigh))
-				.attr("height", scale(division*sprop.thigh[1]));
-			//thigh measurements
+				.attr("y", heightScale(division*sprop.ThighC[0]))
+				.attr("width", pixelWidth(ThighC))
+				.attr("height", scale(division*sprop.ThighC[1]));
+			//ThighC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
 				.attr("x1", center)
-				.attr("x2", placeLeft(thigh)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
-				.attr("y2", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
+				.attr("x2", placeLeft(ThighC)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.ThighC[0]-0.5*sprop.ThighC[1])))
+				.attr("y2", heightScale(division*(sprop.ThighC[0]-0.5*sprop.ThighC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeRight(thigh))
+				.attr("x1", placeRight(ThighC))
 				.attr("x2", center+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
-				.attr("y2", heightScale(division*(sprop.thigh[0]-0.5*sprop.thigh[1])))
+				.attr("y1", heightScale(division*(sprop.ThighC[0]-0.5*sprop.ThighC[1])))
+				.attr("y2", heightScale(division*(sprop.ThighC[0]-0.5*sprop.ThighC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -702,48 +702,48 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(thigh))
-				.attr("y", heightScale(division*(sprop.thigh[0]-0.45*sprop.thigh[1])))
-				.text(outputText(thigh));
+				.attr("x", placeCenterL(ThighC))
+				.attr("y", heightScale(division*(sprop.ThighC[0]-0.45*sprop.ThighC[1])))
+				.text(outputText(ThighC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(thigh))
-				.attr("y", heightScale(division*(sprop.thigh[0]-0.45*sprop.thigh[1])))
-				.text(outputText(thigh));
-			//wrist left
+				.attr("x", placeCenterR(ThighC))
+				.attr("y", heightScale(division*(sprop.ThighC[0]-0.45*sprop.ThighC[1])))
+				.text(outputText(ThighC));
+			//WristC left
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "wrist")
-				.attr("x", placeCenterL(chest+bicep+wrist))
-				.attr("y", heightScale(division*sprop.wrist[0]))
-				.attr("width", pixelWidth(wrist))
-				.attr("height", scale(division*sprop.wrist[1]));
-			//wrist left
+				.attr("id", "WristC")
+				.attr("x", placeCenterL(ChestC+BicepsC+WristC))
+				.attr("y", heightScale(division*sprop.WristC[0]))
+				.attr("width", pixelWidth(WristC))
+				.attr("height", scale(division*sprop.WristC[1]));
+			//WristC left
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "wrist")
-				.attr("x", placeRight(chest*.5 + .5*(bicep-wrist)))
-				.attr("y", heightScale(division*sprop.wrist[0]))
-				.attr("width", pixelWidth(wrist))
-				.attr("height", scale(division*sprop.wrist[1]));
-			//wrist measurements
+				.attr("id", "WristC")
+				.attr("x", placeRight(ChestC*.5 + .5*(BicepsC-WristC)))
+				.attr("y", heightScale(division*sprop.WristC[0]))
+				.attr("width", pixelWidth(WristC))
+				.attr("height", scale(division*sprop.WristC[1]));
+			//WristC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterL(chest+bicep+wrist))
-				.attr("x2", placeCenterL(chest+bicep-wrist)-arrowWidth)
-				.attr("y1", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
-				.attr("y2", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
+				.attr("x1", placeCenterL(ChestC+BicepsC+WristC))
+				.attr("x2", placeCenterL(ChestC+BicepsC-WristC)-arrowWidth)
+				.attr("y1", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
+				.attr("y2", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(chest+bicep+wrist))
-				.attr("x2", placeCenterR(chest+bicep-wrist)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
-				.attr("y2", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
+				.attr("x1", placeCenterR(ChestC+BicepsC+WristC))
+				.attr("x2", placeCenterR(ChestC+BicepsC-WristC)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
+				.attr("y2", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -751,36 +751,36 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(chest+bicep)-textWidth)
-				.attr("y", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
-				.text(outputText(wrist));
+				.attr("x", placeCenterL(ChestC+BicepsC)-textWidth)
+				.attr("y", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
+				.text(outputText(WristC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(chest+bicep)+textWidth)
-				.attr("y", heightScale(division*(sprop.wrist[0]-0.5*sprop.wrist[1])))
-				.text(outputText(wrist));
-			//lower leg left-->calf: width = ankle
+				.attr("x", placeCenterR(ChestC+BicepsC)+textWidth)
+				.attr("y", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
+				.text(outputText(WristC));
+			//lower leg left-->calf: width = AnkleC
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "calf")
-				.attr("x", placeCenterL(thigh+ankle))
+				.attr("x", placeCenterL(ThighC+AnkleC))
 				.attr("y", heightScale(division*sprop.calf[0]))
-				.attr("width", pixelWidth(ankle))
+				.attr("width", pixelWidth(AnkleC))
 				.attr("height", scale(division*sprop.calf[1]));
 			//lower leg right
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "calf")
-				.attr("x", placeCenterR(thigh-ankle))
+				.attr("x", placeCenterR(ThighC-AnkleC))
 				.attr("y", heightScale(division*sprop.calf[0]))
-				.attr("width", pixelWidth(ankle))
+				.attr("width", pixelWidth(AnkleC))
 				.attr("height", scale(division*sprop.calf[1]));
-			//ankle measurements
+			//AnkleC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterL(thigh+ankle))
-				.attr("x2", placeCenterL(thigh-ankle)-arrowWidth)
+				.attr("x1", placeCenterL(ThighC+AnkleC))
+				.attr("x2", placeCenterL(ThighC-AnkleC)-arrowWidth)
 				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
 				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
 				.style("stroke", "black")
@@ -789,8 +789,8 @@
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(thigh+ankle))
-				.attr("x2", placeCenterR(thigh-ankle)+arrowWidth)
+				.attr("x1", placeCenterR(ThighC+AnkleC))
+				.attr("x2", placeCenterR(ThighC-AnkleC)+arrowWidth)
 				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
 				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
 				.style("stroke", "black")
@@ -800,46 +800,46 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(thigh+ankle)-0.6*textWidth)
+				.attr("x", placeCenterL(ThighC+AnkleC)-0.6*textWidth)
 				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
-				.text(outputText(ankle));
+				.text(outputText(AnkleC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(thigh+ankle)+0.6*textWidth)
+				.attr("x", placeCenterR(ThighC+AnkleC)+0.6*textWidth)
 				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
-				.text(outputText(ankle));
-			//knee left
+				.text(outputText(AnkleC));
+			//KneeC left
 			svgShape.append("circle")
 				.attr("class", "body")
-				.attr("id", "knee")
-				.attr("cx", placeLeft(thigh*.5))
-				.attr("cy", heightScale(division*sprop.knee[0]))
-				.attr("r", scale(dia(knee)*.5));
-			//knee right
+				.attr("id", "KneeC")
+				.attr("cx", placeLeft(ThighC*.5))
+				.attr("cy", heightScale(division*sprop.KneeC[0]))
+				.attr("r", scale(dia(KneeC)*.5));
+			//KneeC right
 			svgShape.append("circle")
 				.attr("class", "body")
-				.attr("id", "knee")
-				.attr("cx", placeRight(thigh*.5))
-				.attr("cy", heightScale(division*sprop.knee[0]))
-				.attr("r", scale(dia(knee)*.5));
-			//knee measurements
+				.attr("id", "KneeC")
+				.attr("cx", placeRight(ThighC*.5))
+				.attr("cy", heightScale(division*sprop.KneeC[0]))
+				.attr("r", scale(dia(KneeC)*.5));
+			//KneeC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterL(thigh+knee))
-				.attr("x2", placeCenterL(thigh-knee)-arrowWidth)
-				.attr("y1", heightScale(division*(sprop.knee[0])))
-				.attr("y2", heightScale(division*(sprop.knee[0])))
+				.attr("x1", placeCenterL(ThighC+KneeC))
+				.attr("x2", placeCenterL(ThighC-KneeC)-arrowWidth)
+				.attr("y1", heightScale(division*(sprop.KneeC[0])))
+				.attr("y2", heightScale(division*(sprop.KneeC[0])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
 				.attr("marker-end", "url(\#end)");
 			svgShape.append("line")
 				.attr("class", "measurements")
-				.attr("x1", placeCenterR(thigh+knee))
-				.attr("x2", placeCenterR(thigh-knee)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.knee[0])))
-				.attr("y2", heightScale(division*(sprop.knee[0])))
+				.attr("x1", placeCenterR(ThighC+KneeC))
+				.attr("x2", placeCenterR(ThighC-KneeC)+arrowWidth)
+				.attr("y1", heightScale(division*(sprop.KneeC[0])))
+				.attr("y2", heightScale(division*(sprop.KneeC[0])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -847,21 +847,21 @@
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterL(thigh)-textWidth)
-				.attr("y", heightScale(division*(sprop.knee[0])))
-				.text(outputText(knee));
+				.attr("x", placeCenterL(ThighC)-textWidth)
+				.attr("y", heightScale(division*(sprop.KneeC[0])))
+				.text(outputText(KneeC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
-				.attr("x", placeCenterR(thigh)+textWidth)
-				.attr("y", heightScale(division*(sprop.knee[0])))
-				.text(outputText(knee));
+				.attr("x", placeCenterR(ThighC)+textWidth)
+				.attr("y", heightScale(division*(sprop.KneeC[0])))
+				.text(outputText(KneeC));
 			//feet-->based on height: width = 0.7*division
 			//foot left
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "feet")
-				.attr("x", placeLeft(thigh*.15) - scale(division*.7))
+				.attr("x", placeLeft(ThighC*.15) - scale(division*.7))
 				.attr("y", heightScale(division*sprop.feet[0]))
 				.attr("width", scale(division*.7))
 				.attr("height", scale(division*sprop.feet[1]));
@@ -869,7 +869,7 @@
 			svgShape.append("rect")
 				.attr("class", "body")
 				.attr("id", "feet")
-				.attr("x", placeRight(thigh*.15))
+				.attr("x", placeRight(ThighC*.15))
 				.attr("y", heightScale(division*sprop.feet[0]))
 				.attr("width", scale(division*.7))
 				.attr("height", scale(division*sprop.feet[1]));
@@ -883,7 +883,7 @@
 			d3.selectAll(".body")
 				.attr("rx", "20")
 				.attr("ry", "20");
-			d3.selectAll("#wrist")
+			d3.selectAll("#WristC")
 				.attr("rx", "2")
 				.attr("ry", "2");
 			d3.select("#head")
@@ -896,34 +896,34 @@
 		shapeStyle();
 
  		//example of dynamic manipulation
- 		document.getElementById("chestSlider").onchange = 
+ 		document.getElementById("ChestCSlider").onchange = 
  			function() {
- 				chest = +document.getElementById("chestSlider").value;
+ 				ChestC = +document.getElementById("ChestCSlider").value;
 				update();
  			};
- 		document.getElementById("absSlider").onchange = 
+ 		document.getElementById("AbdomenCSlider").onchange = 
  			function() {
- 				abs = +document.getElementById("absSlider").value;
+ 				AbdomenC = +document.getElementById("AbdomenCSlider").value;
  				update();
  			};
- 		document.getElementById("hipSlider").onchange = 
+ 		document.getElementById("HipCSlider").onchange = 
  			function() {
- 				hip = +document.getElementById("hipSlider").value;
+ 				HipC = +document.getElementById("HipCSlider").value;
 	 			update();
  			};
- 		document.getElementById("thighSlider").onchange = 
+ 		document.getElementById("ThighCSlider").onchange = 
  			function() {
- 				thigh = +document.getElementById("thighSlider").value;
+ 				ThighC = +document.getElementById("ThighCSlider").value;
 	 			update();
  			};
-  		document.getElementById("bicepSlider").onchange = 
+  		document.getElementById("BicepsCSlider").onchange = 
  			function() {
- 				bicep = +document.getElementById("bicepSlider").value;
+ 				BicepsC = +document.getElementById("BicepsCSlider").value;
 	 			update();
  			};
-  		document.getElementById("neckSlider").onchange = 
+  		document.getElementById("NeckCSlider").onchange = 
  			function() {
- 				neck = +document.getElementById("neckSlider").value;
+ 				NeckC = +document.getElementById("NeckCSlider").value;
 	 			update();
  			};
   		document.getElementById("heightSlider").onchange = 
@@ -931,19 +931,19 @@
  				height = +document.getElementById("heightSlider").value;
 	 			update();
  			};
-  		document.getElementById("kneeSlider").onchange = 
+  		document.getElementById("KneeCSlider").onchange = 
  			function() {
- 				knee = +document.getElementById("kneeSlider").value;
+ 				KneeC = +document.getElementById("KneeCSlider").value;
 	 			update();
  			};
-  		document.getElementById("wristSlider").onchange = 
+  		document.getElementById("WristCSlider").onchange = 
  			function() {
- 				wrist = +document.getElementById("wristSlider").value;
+ 				WristC = +document.getElementById("WristCSlider").value;
 	 			update();
  			};
-  		document.getElementById("ankleSlider").onchange = 
+  		document.getElementById("AnkleCSlider").onchange = 
  			function() {
- 				ankle = +document.getElementById("ankleSlider").value;
+ 				AnkleC = +document.getElementById("AnkleCSlider").value;
 	 			update();
  			};
 
@@ -954,8 +954,8 @@
  			//update height
  			division = cm(height)/8;
  			//updating path figure
-			neckSVG.transition()
-				.attr("d", drawNeck());
+			NeckCSVG.transition()
+				.attr("d", drawNeckC());
 			upperSVG.transition()
 				.attr("d", drawUpper());
 			leftArmSVG.transition()
@@ -1098,11 +1098,11 @@
 			}
 
 
-		plotGraph('ThighC', 'PercentBodyFat');
-		console.log(minmax('ThighC'));
-		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
-		console.log(calcFitYThighC(27));
-		console.log(minmax('ThighC'));
+		plotGraph('ThighCC', 'PercentBodyFat');
+		console.log(minmax('ThighCC'));
+		calcFitYThighCC = fitLine('ThighCC', 'PercentBodyFat');
+		console.log(calcFitYThighCC(27));
+		console.log(minmax('ThighCC'));
 		console.log(data);
 	})
 
