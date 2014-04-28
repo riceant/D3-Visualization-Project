@@ -35,5 +35,21 @@ svg {border: solid black 1px;}
 }
 
 body {
-    background-color: rgb(201, 245, 35);
+    background-color: rgb(200, 247, 44);
+}
+
+#sliders {
+    float: left;
+}
+
+#slider {
+    
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.center {
+    text-align: center;
 }

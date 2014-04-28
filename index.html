@@ -32,6 +32,9 @@
 		var wrist = 18;
 	__________________________
 	////////////////////////////////////////////////////////////////////// -->
+	<div class="center">Current Bodypart : <span id="bPart">BODYPART</span><br>Current Value: <span id="bValue">VALUE</span></div>
+	<div id="slider"><input class="fullwidth" type="range" min="0" max="100" value="50" id="globalSlider"></div>
+	
 	<div id="sliders">
 		Chest Slider
 		<input id="chestSlider" type="range" min="80" max="110" value="95"/><br>
@@ -1065,6 +1068,7 @@
 		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
 		console.log(calcFitYThighC(27));
 		console.log(minmax('ThighC'));
+		console.log(data);
 	})
 
 	</script>
