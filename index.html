@@ -55,6 +55,8 @@
 			<input class="fullwidth" id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	
 
 			<input class="fullwidth" id="heightSlider" type="range" min="50" max="90" value="70"/>
+
+			<input class="fullwidth" id="ForearmCSlider" type="range" min="20" max="36" value="28"/>
 		</div>
 	</div>
 
@@ -409,9 +411,9 @@
 
 		//appending paths and arrows and measurements to SVG
 		//appending NeckC
-		var NeckCSVG = svg.append("path")
+		var curvedNeck = svg.append("path")
 			.attr("class", "curvedBody")
-			.attr("id", "NeckC")
+			.attr("id", "cuvedNeck")
 			.attr("d", drawNeckC())
 			.style("fill", "#FFCC66");
 		//appending upper body
@@ -450,6 +452,15 @@
 	 		.attr("id", "rightShoe")
 	 		.attr("d", drawRightShoe())
 	 		.style("fill", "#660000");
+	 	//appending head
+	 	var headSVG = svg.append("ellipse")
+	 		.attr("class", "curvedBody")
+	 		.attr("id", "curvedHead")
+	 		.attr("cy", heightScale(division*prop.head[0]))
+	 		.attr("cx", center)
+	 		.attr("rx", scale(dia(NeckC)*0.75))
+	 		.attr("ry", scale(division*0.5))
+			.style("fill", "#FFCC66");
  		
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
@@ -483,10 +494,11 @@
 			var HeadSVG = svgShape.append("ellipse")
 				.attr("class", "body")
 				.attr("id", "head")
-				.attr("cx", center)
-				.attr("cy", heightScale(division*sprop.head[0]))
-				.attr("rx", scale(division*(.7)*.5))
-				.attr("ry", scale(division*sprop.head[1]));
+		 		.attr("cy", heightScale(division*prop.head[0]))
+		 		.attr("cx", center)
+		 		.attr("rx", scale(dia(NeckC)*0.75))
+		 		.attr("ry", scale(division*0.5))
+				.style("fill", "#AAAFB4");
 			//ChestC
 			var ChestCSVG = svgShape.append("rect")
 				.attr("class", "body")
@@ -862,7 +874,8 @@
 				.attr("x", placeLeft(ThighC*.15) - scale(division*.7))
 				.attr("y", heightScale(division*sprop.feet[0]))
 				.attr("width", scale(division*.7))
-				.attr("height", scale(division*sprop.feet[1]));
+				.attr("height", scale(division*sprop.feet[1]))
+				.style("fill", "#AAAFB4");
 			//foot right
 			var f30 = svgShape.append("rect")
 				.attr("class", "body")
@@ -870,7 +883,8 @@
 				.attr("x", placeRight(ThighC*.15))
 				.attr("y", heightScale(division*sprop.feet[0]))
 				.attr("width", scale(division*.7))
-				.attr("height", scale(division*sprop.feet[1]));
+				.attr("height", scale(division*sprop.feet[1]))
+				.style("fill", "#AAAFB4");
 		//};
 
 		//calling shape drawing function
@@ -885,8 +899,8 @@
 				.attr("rx", "2")
 				.attr("ry", "2");
 			d3.select("#head")
-				.attr("rx", scale(division*(.7)*.5))
-				.attr("ry", scale(division*.5));
+		 		.attr("rx", scale(dia(NeckC)*0.75))
+		 		.attr("ry", scale(division*0.5));
 			// d3.selectAll("#feet")
 			// 	.attr("rx", "3")
 			// 	.attr("ry", "3");
@@ -944,6 +958,12 @@
  				AnkleC = +document.getElementById("AnkleCSlider").value;
 	 			update();
  			};
+  		document.getElementById("ForearmCSlider").onchange = 
+ 			function() {
+ 				ForearmC = +document.getElementById("ForearmCSlider").value;
+	 			update();
+ 			};
+
 
  		//update function--->call this once you have changed a measurement 
  		//				     property to update the figure
@@ -952,7 +972,7 @@
  			//update height
  			division = cm(height)/8;
  			//updating path figure
-			NeckCSVG.transition()
+			curvedNeck.transition()
 				.attr("d", drawNeckC());
 			upperSVG.transition()
 				.attr("d", drawUpper());
@@ -966,6 +986,12 @@
 				.attr("d", drawLeftShoe());
 			rightShoeSVG.transition()
 				.attr("d", drawRightShoe());
+	 		headSVG.transition()
+		 		.attr("cy", heightScale(division*prop.head[0]))
+		 		.attr("cx", center)
+		 		.attr("rx", scale(dia(NeckC)*0.75))
+		 		.attr("ry", scale(division*0.5));
+
 			//updating box figure
 			// d3.selectAll(".body").exist();
 			// d3.selectAll(".measurements").exist();
@@ -997,10 +1023,10 @@
 				.text(outputText(NeckC));
 			//head
 			 HeadSVG.transition()
-				.attr("cx", center)
-				.attr("cy", heightScale(division*sprop.head[0]))
-				.attr("rx", scale(division*(.7)*.5))
-				.attr("ry", scale(division*sprop.head[1]));
+		 		.attr("cy", heightScale(division*prop.head[0]))
+		 		.attr("cx", center)
+		 		.attr("rx", scale(dia(NeckC)*0.75))
+		 		.attr("ry", scale(division*0.5));
 			//ChestC
 			 ChestCSVG.transition()
 				.attr("x", placeCenterL(ChestC))
@@ -1289,9 +1315,23 @@
     	console.log(json);
     });
 */
+
+	var data;
+	var fitLine;
+	var minmax;
+	var retLinePts;
+	var retAllPts;
+	var plotGraph;
+	var graphAxis;
+	var graphTitle = "Thigh Diameter vs Body Fat";
+	var graphTitleX = "Diameter of Thigh (cm)";
+	var graphTitleY = "Percent Body Fat (%)";
+	var graphTitleFunct;
+
 	
-	d3.json("data/BodyFat.json", function (data) {
-		function fitLine(xVar,yVar){
+	d3.json("data/BodyFat.json", function (datainside) {
+		data = datainside;
+		fitLine = function(xVar,yVar){
 			var sumX = 0;
 			var sumY = 0;
 			var sumXY = 0;
@@ -1307,7 +1347,7 @@
 			return function(x){ return slope*x+intercept; }
 		}
 
-		function minmax(variable){
+		minmax = function(variable){
 			var minVal = Number.POSITIVE_INFINITY;
 			var maxVal = Number.NEGATIVE_INFINITY;
 			data.forEach(function(element){
@@ -1321,7 +1361,7 @@
 			return [minVal,maxVal];
 		}
 
-		function retLinePts(xVar,yVar){
+		retLinePts = function(xVar,yVar){
 			var fitln = fitLine(xVar,yVar);
 			xVarminmaxX = minmax(xVar);
 			corrYwMinmax = [fitln(xVarminmaxX[0]),fitln(xVarminmaxX[1])];
@@ -1329,7 +1369,7 @@
 					{"x": xVarminmaxX[1],	"y": heightGraph-corrYwMinmax[1]}];
 		}
 
-		function retAllPts(xVar,yVar){
+		retAllPts = function(xVar,yVar){
 			data.sort(function(a, b){
 			 return a[xVar]-b[xVar]
 			})
@@ -1347,7 +1387,7 @@
 		var extraPadding = 20;
 		var heightGraph = 500;
 		var widthGraph = 600;
-		function plotGraph(xVar, yVar){
+		plotGraph = function(xVar, yVar){
 			xScaleMinmax = minmax(xVar);
 			yScaleMinmax = minmax(yVar);
 			xScale = d3.scale.linear().domain([dia(xScaleMinmax[0])*0.9,dia(xScaleMinmax[1])*1.1]).range([paddingGraph,widthGraph]);
@@ -1376,7 +1416,7 @@
 					//console.log(xScale(d.x));
 					return xScale(d.x); })
 				.y(function(d) { 
-					console.log(yScale(d.y));
+					// console.log(yScale(d.y));
 					return yScale(d.y); })
 				.interpolate("bundle").tension(.3);
 
@@ -1388,7 +1428,7 @@
 				.attr("fill", "none");
 
 			//appending axis
-			var graphAxis = function() {
+			// graphAxis = function() {
 				svgGraph.append("g")
 					.attr("class", "axis")
 					.attr("id", "xAxis")
@@ -1399,14 +1439,11 @@
 					.attr("id", "yAxis")
 					.attr("transform", "translate("+paddingGraph+",0)")
 					.call(yAxis);
-			}
-			graphAxis();
+			// }
+			// graphAxis();
 
 			//appending graph titles and descriptions
-			var graphTitle = "Thigh Diameter vs Body Fat";
-			var graphTitleX = "Diameter of Thigh (cm)";
-			var graphTitleY = "Percent Body Fat (%)";
-			var graphTitleFunct = function() {
+			// graphTitleFunct = function() {
 				svgGraph.append("text")
 						.attr("class", "titles")
 						.attr("id", "graphTitle")
@@ -1430,23 +1467,23 @@
 				        .attr("transform", "rotate(270 " + (paddingGraph/2) + "," + 
 				        	(extraPadding+(paddingGraph*0.7)+(heightGraph)*0.5) + ")")
 				        .text(graphTitleY);
-			}
-			graphTitleFunct();
+			// }
+			// graphTitleFunct();
 
 			}
 
 
 		plotGraph('ThighC', 'PercentBodyFat');
-		console.log(minmax('ThighC'));
+		// console.log(minmax('ThighC'));
 		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
-		console.log(calcFitYThighC(27));
-		console.log(minmax('ThighC'));
-		console.log(data);
+		// console.log(calcFitYThighC(27));
+		// console.log(minmax('ThighC'));
+		// console.log(data);
 		//Body stuff
 		//TODO: rename AnkleC to AnkleC
 		$('.fullwidth').hide();
 
-		//function createBodyListners(){
+
 			$(".body").click(function(){
 				var name = $(this).attr('id');
 				//console.log(name);
@@ -1457,6 +1494,11 @@
 					$(".body").each(function(){
 						$(this).css("fill","white");
 					})
+					//keep head and feet grey
+					d3.selectAll("#head")
+						.style("fill", "#AAAFB4");
+					d3.selectAll("#feet")
+						.style("fill", "#AAAFB4");
 					$('.fullwidth').hide();
 					//Set selected color
 					//$(this).css("fill","red");
@@ -1465,10 +1507,17 @@
 					//Update the Slider
 					$('#bPart').html(name);
 					$('#'+name+'Slider').show();
+
+					//updating Graph
+					d3.selectAll(".titles").remove();
+					d3.selectAll(".graphSVG").remove();
+					d3.selectAll(".axis").remove();
+					var xName = name.substring(0, name.length-1);
+					graphTitleX = "Diameter of " + xName + " (cm)";
+					graphTitle = xName + " Diameter vs Body Fat";
+					plotGraph(name,'PercentBodyFat');
 				}
 			})
-		// }
-		// createBodyListners();
 	})
 
 	</script>
