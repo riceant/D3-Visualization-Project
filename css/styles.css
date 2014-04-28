@@ -27,6 +27,7 @@ svg {border: solid black 1px;}
 }
 		
 .graphSVG {
+	float: right;
 }
 
 .title {
@@ -54,4 +55,8 @@ body {
 
 .center {
     text-align: center;
+}
+
+#mainSlider{
+	visibility:visible;
 }

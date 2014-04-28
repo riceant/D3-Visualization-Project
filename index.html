@@ -32,39 +32,35 @@
 		var WristC = 18;
 	__________________________
 	////////////////////////////////////////////////////////////////////// -->
-	<div class="center">Current Bodypart : <span id="bPart">BODYPART</span><br>Current Value: <span id="bValue">VALUE</span></div>
-	<div id="slider"><input class="fullwidth" type="range" min="0" max="100" value="50" id="globalSlider"></div>
+	<div id="mainSlider" class="center">
+		Current Bodypart : <span id="bPart">BODYPART</span><br>
+		Current Value: <span id="bValue">VALUE</span>
+		<div id="slider">
+			<input class="fullwidth" id="ChestCSlider" type="range" min="80" max="110" value="95"/>
+
+			<input class="fullwidth" id="AbdomenCSlider" type="range" min="75" max="105" value="90"/>
+
+			<input class="fullwidth" id="HipCSlider" type="range" min="83" max="113" value="98"/>
+
+			<input class="fullwidth" id="ThighCSlider" type="range" min="48" max="68" value="58"/>
+
+			<input class="fullwidth" id="BicepsCSlider" type="range" min="22" max="42" value="32"/>
+
+			<input class="fullwidth" id="NeckCSlider" type="range" min="28" max="48" value="38"/>
+
+			<input class="fullwidth" id="KneeCSlider" type="range" min="33" max="43" value="38"/>
+
+			<input class="fullwidth" id="WristCSlider" type="range" min="13" max="23" value="18"/>
+
+			<input class="fullwidth" id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	
+
+			<input class="fullwidth" id="heightSlider" type="range" min="50" max="90" value="70"/>
+		</div>
+	</div>
+
 	
 	<div id="sliders">
-		ChestC Slider
-		<input id="ChestCSlider" type="range" min="80" max="110" value="95"/><br>
 
-		Abdomen Slider
-		<input id="AbdomenCSlider" type="range" min="75" max="105" value="90"/><br>
-
-		HipC Slider
-		<input id="HipCSlider" type="range" min="83" max="113" value="98"/><br>
-
-		ThighC Slider
-		<input id="ThighCSlider" type="range" min="48" max="68" value="58"/><br>
-
-		BicepsC Slider
-		<input id="BicepsCSlider" type="range" min="22" max="42" value="32"/><br>
-
-		NeckC Slider
-		<input id="NeckCSlider" type="range" min="28" max="48" value="38"/><br>
-
-		Height Slider
-		<input id="heightSlider" type="range" min="50" max="90" value="70"/><br>
-
-		KneeC Slider
-		<input id="KneeCSlider" type="range" min="33" max="43" value="38"/><br>
-
-		WristC Slider
-		<input id="WristCSlider" type="range" min="13" max="23" value="18"/><br>
-
-		AnkleC Slider
-		<input id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	<br>	
 	</div>
 	
 	<div id="divCanvas" style="float:left"></div>
@@ -153,7 +149,7 @@
 			"AbdomenC": [5.75, 1],
 			"HipC": [4.75, 1],
 			"ThighC": [4, 1.95],
-			"calf": [1.95, 1.65],
+			"AnkleC": [1.95, 1.65],
 			"feet": [0.3, 0.3],
 			"KneeC": [2],
 			"BicepsC": [6.8, 1.8],
@@ -760,29 +756,29 @@
 				.attr("x", placeCenterR(ChestC+BicepsC)+textWidth)
 				.attr("y", heightScale(division*(sprop.WristC[0]-0.5*sprop.WristC[1])))
 				.text(outputText(WristC));
-			//lower leg left-->calf: width = AnkleC
+			//lower leg left-->AnkleC: width = AnkleC
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "calf")
+				.attr("id", "AnkleC")
 				.attr("x", placeCenterL(ThighC+AnkleC))
-				.attr("y", heightScale(division*sprop.calf[0]))
+				.attr("y", heightScale(division*sprop.AnkleC[0]))
 				.attr("width", pixelWidth(AnkleC))
-				.attr("height", scale(division*sprop.calf[1]));
+				.attr("height", scale(division*sprop.AnkleC[1]));
 			//lower leg right
 			svgShape.append("rect")
 				.attr("class", "body")
-				.attr("id", "calf")
+				.attr("id", "AnkleC")
 				.attr("x", placeCenterR(ThighC-AnkleC))
-				.attr("y", heightScale(division*sprop.calf[0]))
+				.attr("y", heightScale(division*sprop.AnkleC[0]))
 				.attr("width", pixelWidth(AnkleC))
-				.attr("height", scale(division*sprop.calf[1]));
+				.attr("height", scale(division*sprop.AnkleC[1]));
 			//AnkleC measurements
 			svgShape.append("line")
 				.attr("class", "measurements")
 				.attr("x1", placeCenterL(ThighC+AnkleC))
 				.attr("x2", placeCenterL(ThighC-AnkleC)-arrowWidth)
-				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
-				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y1", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
+				.attr("y2", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -791,8 +787,8 @@
 				.attr("class", "measurements")
 				.attr("x1", placeCenterR(ThighC+AnkleC))
 				.attr("x2", placeCenterR(ThighC-AnkleC)+arrowWidth)
-				.attr("y1", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
-				.attr("y2", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y1", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
+				.attr("y2", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
 				.style("stroke", "black")
 				.attr("stroke-width", "2")
 				.attr("marker-start", "url(\#begin)")
@@ -801,13 +797,13 @@
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
 				.attr("x", placeCenterL(ThighC+AnkleC)-0.6*textWidth)
-				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
 				.text(outputText(AnkleC));
 			svgShape.append("text")
 				.attr("class", "textMeasurements")
 				.attr("text-anchor", "middle")
 				.attr("x", placeCenterR(ThighC+AnkleC)+0.6*textWidth)
-				.attr("y", heightScale(division*(sprop.calf[0]-0.9*sprop.calf[1])))
+				.attr("y", heightScale(division*(sprop.AnkleC[0]-0.9*sprop.AnkleC[1])))
 				.text(outputText(AnkleC));
 			//KneeC left
 			svgShape.append("circle")
@@ -1098,12 +1094,33 @@
 			}
 
 
-		plotGraph('ThighCC', 'PercentBodyFat');
-		console.log(minmax('ThighCC'));
-		calcFitYThighCC = fitLine('ThighCC', 'PercentBodyFat');
-		console.log(calcFitYThighCC(27));
-		console.log(minmax('ThighCC'));
+		plotGraph('ThighC', 'PercentBodyFat');
+		console.log(minmax('ThighC'));
+		calcFitYThighC = fitLine('ThighC', 'PercentBodyFat');
+		console.log(calcFitYThighC(27));
+		console.log(minmax('ThighC'));
 		console.log(data);
+		//Body stuff
+		//TODO: rename AnkleC to AnkleC
+		$('.fullwidth').hide();
+
+		$(".body").click(function(){
+			var name = $(this).attr('id');
+			//Do nothing for head and feet
+			if ((name == "head")||(name == "feet")){
+			}else{
+				//Clear old ones
+				$(".body").each(function(){
+					$(this).css("fill","white");
+				})
+				$('.fullwidth').hide();
+				//Set selected color
+				$(this).css("fill","red");
+				//Update the Slider
+				$('#bPart').html(name);
+				$('#'+name+'Slider').show();
+			}
+		})
 	})
 
 	</script>
