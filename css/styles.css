@@ -47,7 +47,7 @@ svg {border: none}
     font-weight: bold;
 }
 .canvas {
-	background-color: #CCEBDE;
+	background-color: #BCE8D7;
 	float: left;
 }
 .body {
@@ -70,7 +70,7 @@ svg {border: none}
 }
 
 body {
-    background-color: #CCEBDE;
+    background-color: #BCE8D7;
 }
 
 #sliders {
@@ -83,6 +83,8 @@ body {
 
 .fullwidth {
     width: 100%;
+    background-color: #A37788;
+    display: none;
 }
 
 .center {
@@ -91,4 +93,19 @@ body {
 
 #mainSlider{
 	visibility:visible;
+	background-color: #A37788;
+}
+
+#bValue {
+	text-align: center;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#bPart {
+	text-align: center;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 25px;
+    font-weight: bold;
 }
