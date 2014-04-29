@@ -119,6 +119,37 @@
 		var armWidth = 0.05;
 		var finger = 0.2;
 		var feet = 1.3;
+		var belly = 4.65;
+		var bellytop = 5;
+		var bellymiddle = 0.5*(bellytop+belly);
+
+		//mapping from string to variable
+		var mappingGetter = {
+				"height": function() {return height;},
+				"NeckC": function() {return NeckC;},
+				"ChestC": function() {return ChestC;},
+				"AbdomenC": function() {return AbdomenC;},
+				"HipC": function() {return HipC;},
+				"ThighC": function() {return ThighC;},
+				"KneeC": function() {return KneeC;},
+				"AnkleC": function() {return AnkleC;},
+				"BicepsC": function() {return BicepsC;},
+				"ForearmC": function() {return ForearmC;},
+				"WristC": function() {return WristC;}
+		};
+		var mappingSetter = {
+				"height": function(d) {height=d;},
+				"NeckC": function(d) { NeckC=d;},
+				"ChestC": function(d) { ChestC=d;},
+				"AbdomenC": function(d) { AbdomenC=d;},
+				"HipC": function(d) { HipC=d;},
+				"ThighC": function(d) { ThighC=d;},
+				"KneeC": function(d) { KneeC=d;},
+				"AnkleC": function(d) { AnkleC=d;},
+				"BicepsC": function(d) { BicepsC=d;},
+				"ForearmC": function(d) { ForearmC=d;},
+				"WristC": function(d) { WristC=d;}
+		};
 
 		//convert measurement values to strings in cm
 		//takes in circumference in cm and putputs "30cm"
@@ -314,7 +345,8 @@
 					"V " + heightScale(division*(prop.WristC[0]-finger)) + " " + 
 					"V " + heightScale(division*(prop.WristC[0]-1.5*finger)) + " " +
 					"H " + placeCenterR((1+armWidth)*ChestC + BicepsC + (-1.25)*WristC) + " " + 
-					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - WristC) + " " + heightScale(division*prop.WristC[0]) + " " +					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - WristC) + " " + heightScale(division*prop.WristC[0]) + " " +					
+					"L " + placeCenterR((1+armWidth)*ChestC + BicepsC - ForearmC) + " " + heightScale(division*prop.ForearmC[0]) + " " +
 					"L " + placeCenterR((1+armWidth)*ChestC) + " " + heightScale(division*prop.arm[0]) + " " +
 					"Z";
 		};
@@ -380,7 +412,21 @@
 					BezierCirR(ThighC-feet*AnkleC, 0.1, ThighC-AnkleC, prop.feet[0]) + " " +
 					"Z"; 
 		};
-
+		var beerBelly = function() {
+			return 	"M " + placeCenterL(0.45*(AbdomenC+HipC)-5) + " " + heightScale(division*belly) + " " +
+					"Q " + center + " " + heightScale(division*(belly - percent/35)) + " " +
+						placeCenterR(0.45*(AbdomenC+HipC)-5) + " " + heightScale(division*belly);
+		};
+		var beerBellyTop = function() {
+			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellytop) + " " +
+					"Q " + center + " " + heightScale(division*(belly + percent/40)) + " " +
+						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellytop);
+		};
+		var beerBellyMiddle = function() {
+			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellymiddle) + " " +
+					"Q " + center + " " + heightScale(division*(belly - percent/300)) + " " +
+						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellymiddle);
+		};
 		//addeding marker to SVG for measurement/arrow use
 		///////////////////////////////////////////////////////////////////////
 		svg.append("svg:defs")
@@ -461,7 +507,19 @@
 	 		.attr("rx", scale(dia(NeckC)*0.75))
 	 		.attr("ry", scale(division*0.5))
 			.style("fill", "#FFCC66");
- 		
+		//appending beer belly
+		var beerBellySVG = svg.append("path")
+			.attr("class", "curvedBody")
+			.attr("id", "belly")
+			.attr("d", beerBelly());
+		var beerBellySVGTop = svg.append("path")
+			.attr("class", "curvedBody")
+			.attr("id", "belly")
+			.attr("d", beerBellyTop());
+		var beerBellySVGMiddle = svg.append("path")
+			.attr("class", "curvedBody")
+			.attr("id", "bellyMiddle")
+			.attr("d", beerBellyMiddle()); 		
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
 		//var shapeUpdate = function() {
@@ -991,6 +1049,12 @@
 		 		.attr("cx", center)
 		 		.attr("rx", scale(dia(NeckC)*0.75))
 		 		.attr("ry", scale(division*0.5));
+		 	beerBellySVG.transition()
+		 		.attr("d", beerBelly());
+		 	beerBellySVGTop.transition()
+		 		.attr("d", beerBellyTop());
+		 	beerBellySVGMiddle.transition()
+		 		.attr("d", beerBellyMiddle());
 
 			//updating box figure
 			// d3.selectAll(".body").exist();
@@ -1316,6 +1380,7 @@
     });
 */
 
+	//all the potential variables needed outside the callback function
 	var data;
 	var fitLine;
 	var minmax;
@@ -1327,7 +1392,15 @@
 	var graphTitleX = "Diameter of Thigh (cm)";
 	var graphTitleY = "Percent Body Fat (%)";
 	var graphTitleFunct;
-
+	var xAxis;
+	var yAxis;
+	var getFat;
+	var graphPointer;
+	var svgGraph;
+	var xValue;
+	var yValue;
+	var sliderName;
+	var value;
 	
 	d3.json("data/BodyFat.json", function (datainside) {
 		data = datainside;
@@ -1396,15 +1469,14 @@
 			var intFormat = d3.format("d");
 			var percentFormat = d3.format("%");
 			//axis
-			var yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(function (d) {
+			yAxis = d3.svg.axis().scale(yScale).orient("left").tickFormat(function (d) {
 				return intFormat(d);
 			});
-			var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(function (d) {
+			xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickFormat(function (d) {
 				return intFormat(d);
 			});
 
-			var svgGraph = d3.select("#divCanvasShape").append("svg")
-
+			svgGraph = d3.select("#divCanvasShape").append("svg")
 				.attr("class", "graphSVG")
 				.attr("height", heightGraph+extraPadding+titlePadding)
 				.attr("width", widthGraph+extraPadding)
@@ -1483,9 +1555,9 @@
 		//TODO: rename AnkleC to AnkleC
 		$('.fullwidth').hide();
 
-
+			var name;
 			$(".body").click(function(){
-				var name = $(this).attr('id');
+				name = $(this).attr('id');
 				//console.log(name);
 				//Do nothing for head and feet
 				if ((name == "head")||(name == "feet")){
@@ -1512,10 +1584,38 @@
 					d3.selectAll(".titles").remove();
 					d3.selectAll(".graphSVG").remove();
 					d3.selectAll(".axis").remove();
+					d3.selectAll("#graphPointer").remove();
+			  		// document.getElementById(sliderName).onchange = 
+			 			// function() {
+			 			// 	mappingSetter[name](+document.getElementById(sliderName).value); 
+				 		// 	update();
+			 			// };
 					var xName = name.substring(0, name.length-1);
 					graphTitleX = "Diameter of " + xName + " (cm)";
 					graphTitle = xName + " Diameter vs Body Fat";
 					plotGraph(name,'PercentBodyFat');
+
+					//appending slider point base on best fit line
+					sliderName =name + "Slider";
+					getFat = fitLine(name, 'PercentBodyFat');
+					graphPointer = svgGraph.append("circle")
+						.attr("id", "graphPointer")
+						.attr("r", "5")
+						.attr("cx", "-100")
+						.attr("cy", "700");
+			  		document.getElementById(sliderName).onchange = 
+			 			function() {
+			 				value = +document.getElementById(sliderName).value;
+			 				mappingSetter[name](value);
+			 				percent = getFat(value); 
+				 			update();
+				 			yValue = yScale(percent);
+				 			xValue = xScale(dia(value));
+				 			graphPointer.transition()
+				 				.attr("cx", xValue)
+				 				.attr("cy", yValue);
+				 			//console.log(xValue + " | " + yValue);
+			 			};
 				}
 			})
 	})

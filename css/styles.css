@@ -4,6 +4,14 @@ svg {border: solid black 1px;}
 	border: none;
 }
 
+#belly {
+	fill: none;
+}
+
+#bellyMiddle {
+	fill: none;
+}
+
 .axis {
     fill: none;
     stroke: black;
