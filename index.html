@@ -8,7 +8,7 @@
 <head>
 
 <body>
-<h1 class="titles">Who Needs a Scale? </h1>
+<h1 class="titless">Who Needs a Scale? </h1>
 
 <!-- //////////////////////////////////////////////////////////////////////////
 	The following code creates the two human figures. To change values on the figures, 
@@ -36,7 +36,7 @@
 		Current Bodypart : <span id="bPart">BODYPART</span><br>
 		Current Value: <span id="bValue">VALUE</span>
 		<div id="slider">
-			<input class="fullwidth" id="ChestCSlider" type="range" min="80" max="110" value="95"/>
+			<input class="fullwidth" id="ChestCSlider" type="range" min="80" max="125" value="95"/>
 
 			<input class="fullwidth" id="AbdomenCSlider" type="range" min="75" max="105" value="90"/>
 
@@ -50,7 +50,7 @@
 
 			<input class="fullwidth" id="KneeCSlider" type="range" min="33" max="43" value="38"/>
 
-			<input class="fullwidth" id="WristCSlider" type="range" min="13" max="23" value="18"/>
+			<input class="fullwidth" id="WristCSlider" type="range" min="15" max="23" value="17"/>
 
 			<input class="fullwidth" id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	
 
@@ -413,19 +413,24 @@
 					"Z"; 
 		};
 		var beerBelly = function() {
-			return 	"M " + placeCenterL(0.45*(AbdomenC+HipC)-5) + " " + heightScale(division*belly) + " " +
+			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*belly) + " " +
 					"Q " + center + " " + heightScale(division*(belly - percent/35)) + " " +
-						placeCenterR(0.45*(AbdomenC+HipC)-5) + " " + heightScale(division*belly);
+						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*belly);
 		};
 		var beerBellyTop = function() {
 			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellytop) + " " +
-					"Q " + center + " " + heightScale(division*(belly + percent/40)) + " " +
+					"Q " + center + " " + heightScale(division*(belly + percent/50)) + " " +
 						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellytop);
 		};
 		var beerBellyMiddle = function() {
-			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellymiddle) + " " +
-					"Q " + center + " " + heightScale(division*(belly - percent/300)) + " " +
-						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*bellymiddle);
+			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*(bellymiddle-0.1)) + " " +
+					"Q " + center + " " + heightScale(division*(belly - percent/50)) + " " +
+						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*(bellymiddle-0.1));
+		};
+		var beerBellyMidTop = function() {
+			return 	"M " + placeCenterL(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*(bellymiddle+0.1)) + " " +
+					"Q " + center + " " + heightScale(division*(belly + percent/60)) + " " +
+						placeCenterR(0.42*(AbdomenC+HipC)-5) + " " + heightScale(division*(bellymiddle+0.1));			
 		};
 		//addeding marker to SVG for measurement/arrow use
 		///////////////////////////////////////////////////////////////////////
@@ -519,7 +524,11 @@
 		var beerBellySVGMiddle = svg.append("path")
 			.attr("class", "curvedBody")
 			.attr("id", "bellyMiddle")
-			.attr("d", beerBellyMiddle()); 		
+			.attr("d", beerBellyMiddle());
+		var beerBellySVGMidTop = svg.append("path")
+			.attr("class", "curvedBody")
+			.attr("id", "bellyMiddle")
+			.attr("d", beerBellyMidTop());			 		
 		//drawing human figure with shapes
 		///////////////////////////////////////////////////////////////////////
 		//var shapeUpdate = function() {
@@ -1055,6 +1064,8 @@
 		 		.attr("d", beerBellyTop());
 		 	beerBellySVGMiddle.transition()
 		 		.attr("d", beerBellyMiddle());
+		 	beerBellySVGMidTop.transition()
+		 		.attr("d", beerBellyMidTop());
 
 			//updating box figure
 			// d3.selectAll(".body").exist();
@@ -1490,7 +1501,7 @@
 				.y(function(d) { 
 					// console.log(yScale(d.y));
 					return yScale(d.y); })
-				.interpolate("bundle").tension(.3);
+				.interpolate("bundle").tension(.7);
 
 			//The line SVG Path we draw
 			var lineGraph = svgGraph.append("path")

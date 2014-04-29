@@ -1,7 +1,7 @@
-svg {border: solid black 1px;}
+svg {border: none}
 
 .graphSVG {
-	border: none;
+	border: solid black 2px;
 }
 
 #belly {
@@ -33,6 +33,13 @@ svg {border: solid black 1px;}
     font-weight: bold;
 }
 
+.titless {
+    text-align: center;
+    font-family: 'Shadows Into Light', 'cursive';
+    font-size: 70px;
+    font-weight: bold;
+}
+
 .textmeasurements {
 	text-align: center;
     font-family: 'Shadows Into Light', 'cursive';
@@ -40,7 +47,7 @@ svg {border: solid black 1px;}
     font-weight: bold;
 }
 .canvas {
-	background-color: #b7b7b7;
+	background-color: #CCEBDE;
 	float: left;
 }
 .body {
@@ -63,7 +70,7 @@ svg {border: solid black 1px;}
 }
 
 body {
-    background-color: rgb(200, 247, 44);
+    background-color: #CCEBDE;
 }
 
 #sliders {
