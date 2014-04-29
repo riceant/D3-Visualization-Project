@@ -1,7 +1,7 @@
 svg {border: none}
 
 .graphSVG {
-	border: solid black 2px;
+	border-bottom: : solid black 2px;
 }
 
 #belly {
@@ -78,7 +78,9 @@ body {
 }
 
 #slider {
-    
+    text-align: center;
+    margin: auto;
+    width: 80%;
 }
 
 .fullwidth {
@@ -108,4 +110,25 @@ body {
     font-family: 'Shadows Into Light', 'cursive';
     font-size: 25px;
     font-weight: bold;
+}
+
+#info{
+    font-family: 'Francois One', 'cursive';
+	float: left;
+    width: 500px;
+}
+
+.fran{
+    font-family: 'Francois One', 'cursive';
+    font-size: 25px;
+}
+
+.tab {
+    margin-left: 0px; 
+    font-size: 25px;
+    width: 650px;
+}
+
+#source {
+    font-size: 14px;
 }
