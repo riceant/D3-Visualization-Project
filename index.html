@@ -36,6 +36,7 @@
 		<span class="fran">Current Bodypart : </span><span id="bPart">BODYPART</span><br>
 		<span class="fran">Current Value: </span><span id="bValue">VALUE</span>
 		<div id="slider">
+			<div id="instruc" class="fullwidth fran"> Please click on a body part in the dummy diagram below </div>
 			<input class="fullwidth" id="ChestCSlider" type="range" min="80" max="125" value="95"/>
 
 			<input class="fullwidth" id="AbdomenCSlider" type="range" min="75" max="105" value="90"/>
@@ -1570,6 +1571,7 @@
 		//Body stuff
 		//TODO: rename AnkleC to AnkleC
 		$('.fullwidth').hide();
+		$('#instruc').show();
 
 			var name;
 			$(".body").click(function(){

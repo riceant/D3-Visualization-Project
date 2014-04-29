@@ -78,6 +78,7 @@ body {
 }
 
 #slider {
+    background-color: Crimson ;
     text-align: center;
     margin: auto;
     width: 80%;
@@ -85,7 +86,6 @@ body {
 
 .fullwidth {
     width: 100%;
-    background-color: #A37788;
     display: none;
 }
 
@@ -95,7 +95,6 @@ body {
 
 #mainSlider{
 	visibility:visible;
-	background-color: #A37788;
 }
 
 #bValue {
