@@ -39,21 +39,21 @@
 			<div id="instruc" class="fullwidth fran"> Please click on a body part in the dummy diagram below </div>
 			<input class="fullwidth" id="ChestCSlider" type="range" min="80" max="125" value="95"/>
 
-			<input class="fullwidth" id="AbdomenCSlider" type="range" min="75" max="105" value="90"/>
+			<input class="fullwidth" id="AbdomenCSlider" type="range" min="70" max="130" value="90"/>
 
-			<input class="fullwidth" id="HipCSlider" type="range" min="83" max="113" value="98"/>
+			<input class="fullwidth" id="HipCSlider" type="range" min="83" max="140" value="98"/>
 
-			<input class="fullwidth" id="ThighCSlider" type="range" min="48" max="68" value="58"/>
+			<input class="fullwidth" id="ThighCSlider" type="range" min="48" max="80" value="58"/>
 
-			<input class="fullwidth" id="BicepsCSlider" type="range" min="22" max="42" value="32"/>
+			<input class="fullwidth" id="BicepsCSlider" type="range" min="24" max="43" value="32"/>
 
-			<input class="fullwidth" id="NeckCSlider" type="range" min="28" max="48" value="38"/>
+			<input class="fullwidth" id="NeckCSlider" type="range" min="30" max="48" value="38"/>
 
-			<input class="fullwidth" id="KneeCSlider" type="range" min="33" max="43" value="38"/>
+			<input class="fullwidth" id="KneeCSlider" type="range" min="33" max="50" value="38"/>
 
-			<input class="fullwidth" id="WristCSlider" type="range" min="15" max="23" value="17"/>
+			<input class="fullwidth" id="WristCSlider" type="range" min="15" max="22" value="17"/>
 
-			<input class="fullwidth" id="AnkleCSlider" type="range" min="18" max="28" value="23"/>	
+			<input class="fullwidth" id="AnkleCSlider" type="range" min="18" max="33" value="23"/>	
 
 			<input class="fullwidth" id="heightSlider" type="range" min="50" max="90" value="70"/>
 
@@ -1576,6 +1576,8 @@
 			var name;
 			$(".body").click(function(){
 				name = $(this).attr('id');
+				var xName = name.substring(0, name.length-1);
+				sliderName =name + "Slider";
 				//console.log(name);
 				//Do nothing for head and feet
 				if ((name == "head")||(name == "feet")){
@@ -1595,7 +1597,8 @@
 					d3.selectAll("#" + name).transition()
 						.style("fill", "red");
 					//Update the Slider
-					$('#bPart').html(name);
+					$('#bPart').html(xName);
+					$('#bValue').html(Math.round(10*dia(+document.getElementById(sliderName).value))/10 + "cm")
 					$('#'+name+'Slider').show();
 
 					//updating Graph
@@ -1608,19 +1611,18 @@
 			 			// 	mappingSetter[name](+document.getElementById(sliderName).value); 
 				 		// 	update();
 			 			// };
-					var xName = name.substring(0, name.length-1);
 					graphTitleX = "Diameter of " + xName + " (cm)";
 					graphTitle = xName + " Diameter vs Body Fat";
 					plotGraph(name,'PercentBodyFat');
 
 					//appending slider point base on best fit line
-					sliderName =name + "Slider";
+					//sliderName =name + "Slider";
 					getFat = fitLine(name, 'PercentBodyFat');
 					graphPointer = svgGraph.append("circle")
 						.attr("id", "graphPointer")
 						.attr("r", "5")
-						.attr("cx", "-100")
-						.attr("cy", "700");
+						.attr("cx", xScale(dia(+document.getElementById(sliderName).value)))
+						.attr("cy", yScale(getFat(+document.getElementById(sliderName).value)));
 			  		document.getElementById(sliderName).onchange = 
 			 			function() {
 			 				value = +document.getElementById(sliderName).value;
